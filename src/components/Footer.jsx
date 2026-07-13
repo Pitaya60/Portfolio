@@ -19,7 +19,7 @@ export default function Footer() {
       </div>
 
       <div className="wrap footer-wordmark">
-        AIGERIM<span>NUR</span>
+        Abdulla<span>Camilla</span>
       </div>
 
       <div className="wrap footer-bottom">

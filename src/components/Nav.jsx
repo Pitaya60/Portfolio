@@ -9,7 +9,7 @@ export default function Nav() {
     <header className="nav">
       <div className="wrap nav-inner">
         <Link to="/" className="nav-logo" onClick={() => setOpen(false)}>
-          Aigerim Nur<span className="nav-logo-dot">.</span>
+          Абдулла Камилла<span className="nav-logo-dot">.</span>
         </Link>
 
         <nav className={`nav-links ${open ? 'nav-links-open' : ''}`}>
