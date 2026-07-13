@@ -3,57 +3,58 @@ import CaseCard from '../components/CaseCard.jsx'
 import './home.css'
 
 export default function Home() {
+  const workCases = caseStudies.filter((c) => c.category !== 'small')
+  const smallCases = caseStudies.filter((c) => c.category === 'small')
+
   return (
     <>
       <section className="hero">
         <div className="hero-glow" aria-hidden="true" />
         <div className="wrap hero-inner">
-          <p className="eyebrow">UX/UI дизайнер</p>
           <h1>
-            Интерфейсы,<br />
-            которые работают<br />
-            на ваш <span className="hero-highlight">продукт</span>
+            UX-UI Designer,<br />
+            строю digital <span className="hero-highlight">проекты</span>,<br />
+            нахожусь в Алматы
           </h1>
-          <p className="hero-sub">
-            Проектирую FinTech и EdTech продукты — от исследования до финальных
-            экранов — и объясняю каждое решение метриками, а не вкусом.
-          </p>
           <div className="hero-actions">
-            <a href="#work" className="btn btn-primary">Смотреть кейсы →</a>
-            <a href="#contact" className="btn btn-ghost">Связаться</a>
+            <a href="#work" className="btn btn-primary">Смотреть кейсы</a>
+          </div>
+        </div>
+
+        <div className="tape" aria-hidden="true">
+          <div className="tape-track">
+            {tapeItems.concat(tapeItems).map((t, i) => (
+              <span key={i} className={`tape-chip tape-${t.toLowerCase()}`}>{t}</span>
+            ))}
           </div>
         </div>
       </section>
 
       <section id="work" className="wrap section">
         <div className="section-head">
-          <h2>Избранные кейсы</h2>
-          <p className="eyebrow">{caseStudies.length} проекта</p>
+          <h2>Рабочие кейсы</h2>
         </div>
         <div className="work-grid">
-          {caseStudies.map((c, i) => (
+          {workCases.map((c, i) => (
             <CaseCard key={c.slug} item={c} index={i} />
           ))}
         </div>
-      </section>
 
-      <section id="about" className="wrap section about">
-        <div className="section-head">
-          <h2>Обо мне</h2>
+        <div className="section-head section-head-secondary">
+          <h2>Малые кейсы</h2>
         </div>
-        <div className="about-grid">
-          <p>
-            Продуктовый дизайнер с фокусом на понятные пользователю решения и измеримый
-            эффект для бизнеса. Работаю на стыке исследования, UX и UI — от гипотезы
-            до финальных экранов в Figma.
-          </p>
-          <div className="about-skills">
-            {['Figma, FigJam', 'User Research, CJM', 'Дизайн-системы', 'Юзабилити-тестирование', 'A/B тесты, метрики продукта'].map((s) => (
-              <span key={s} className="tag">{s}</span>
+        {smallCases.length > 0 ? (
+          <div className="work-grid">
+            {smallCases.map((c, i) => (
+              <CaseCard key={c.slug} item={c} index={i} />
             ))}
           </div>
-        </div>
+        ) : (
+          <p className="work-empty">Скоро здесь появятся личные и учебные проекты.</p>
+        )}
       </section>
     </>
   )
 }
+
+const tapeItems = ['FinTech', 'EdTech', 'MedTech']

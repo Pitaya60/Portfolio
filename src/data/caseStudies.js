@@ -8,9 +8,15 @@ const caseStudies = [
     company: 'Dosym',
     year: '2025',
     role: 'Product Designer',
+    timeline: 'Март 2025 — Июль 2025',
+    tools: 'Figma, Maze, Miro',
+    category: 'work', // 'work' — рабочий кейс, 'small' — малый/личный кейс
     tags: ['FinTech', 'Web + Mobile', 'Research'],
-    cover: 'metric', // 'metric' | 'image' — если нет картинки, показываем метрику
-    heroMetric: { value: '+19%', label: 'CR подачи → одобрение' },
+    coverImage: null, // ссылка на обложку кейса для карточки на главной (1200×900)
+    images: {
+      cover: [], // 1–2 картинки верхнего блока кейса, до 1600×1000 каждая
+      gallery: [], // 2–4 скриншота внутри кейса, до 900×1200 каждая (портретные) или 1600×1000 (десктоп)
+    },
     summary:
       'Позволили пользователю оформлять микрокредит вместе с созаёмщиком онлайн — без визита в офис — чтобы снизить долю отказов из-за низкой платёжеспособности.',
     metrics: [
@@ -55,9 +61,15 @@ const caseStudies = [
     company: 'Coursiv (Zimran Team)',
     year: '2025',
     role: 'UX/UI Designer',
+    timeline: 'Янв 2025 — Март 2025',
+    tools: 'Figma, Maze',
+    category: 'work',
     tags: ['EdTech', 'Landing', 'Conversion'],
-    cover: 'metric',
-    heroMetric: { value: '01', label: 'первый экран → главный оффер' },
+    coverImage: null,
+    images: {
+      cover: [],
+      gallery: [],
+    },
     summary:
       'Редизайн продающей страницы Coursiv для роста конверсии в покупку — через понятный оффер, доверие и структуру информации.',
     metrics: [
