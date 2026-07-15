@@ -97,12 +97,6 @@ button { font-family: inherit; cursor: pointer; }
   background: var(--paper-raised);
 }
 
-/* dotted world-map style rule used as a section divider accent */
-.ruler {
-  height: 4px;
-  background: var(--lime);
-}
-
 .metric-card {
   border: 1px solid var(--line);
   border-radius: var(--radius);

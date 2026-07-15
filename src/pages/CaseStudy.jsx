@@ -13,7 +13,6 @@ export default function CaseStudy() {
 
   return (
     <article className="case">
-      <div className="ruler" />
       <header className="wrap case-header">
         <Link to="/" className="back-link">← Все кейсы</Link>
         <h1>{item.title}</h1>

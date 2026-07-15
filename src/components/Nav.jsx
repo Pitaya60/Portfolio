@@ -14,7 +14,8 @@ export default function Nav() {
 
         <nav className={`nav-links ${open ? 'nav-links-open' : ''}`}>
           <a href="/#work" onClick={() => setOpen(false)}>Кейсы</a>
-          <a href="/#about" onClick={() => setOpen(false)}>Обо мне</a>
+          <Link to="/about" onClick={() => setOpen(false)}>Обо мне</Link>
+          <a href="/resume.pdf" target="_blank" rel="noreferrer" onClick={() => setOpen(false)}>Резюме</a>
           <a href="/#contact" onClick={() => setOpen(false)} className="btn btn-primary nav-cta">
             Написать
           </a>

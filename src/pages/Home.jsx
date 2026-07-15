@@ -13,19 +13,10 @@ export default function Home() {
         <div className="wrap hero-inner">
           <h1>
             UX-UI Designer,<br />
-            строю digital <span className="hero-highlight">проекты</span>,<br />
-            нахожусь в Алматы
+            build digital projects
           </h1>
           <div className="hero-actions">
             <a href="#work" className="btn btn-primary">Смотреть кейсы</a>
-          </div>
-        </div>
-
-        <div className="tape" aria-hidden="true">
-          <div className="tape-track">
-            {tapeItems.concat(tapeItems).map((t, i) => (
-              <span key={i} className={`tape-chip tape-${t.toLowerCase()}`}>{t}</span>
-            ))}
           </div>
         </div>
       </section>
@@ -56,5 +47,3 @@ export default function Home() {
     </>
   )
 }
-
-const tapeItems = ['FinTech', 'EdTech', 'MedTech']
