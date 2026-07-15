@@ -19,7 +19,7 @@ export default function Footer() {
           <a href="https://linkedin.com" target="_blank" rel="noreferrer">LinkedIn</a>
           <a href="https://t.me" target="_blank" rel="noreferrer">Telegram</a>
         </div>
-        <p className="footer-copy">© 2026. Все права защищены.</p>
+        <p className="footer-copy">© 2026 Камилла Абдулла. Все права защищены.</p>
       </div>
     </footer>
   )
