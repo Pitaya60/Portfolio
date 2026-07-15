@@ -1,5 +1,6 @@
 import { useParams, Link, Navigate } from 'react-router-dom'
 import caseStudies from '../data/caseStudies.js'
+import ImageSlot from '../components/ImageSlot.jsx'
 import './caseStudy.css'
 
 export default function CaseStudy() {
@@ -115,17 +116,5 @@ function CaseSection({ number, title, children }) {
       </div>
       <div className="case-section-body">{children}</div>
     </section>
-  )
-}
-
-function ImageSlot({ src, label, size, tall }) {
-  if (src) {
-    return <img className={`case-image ${tall ? 'case-image-tall' : ''}`} src={src} alt={label} />
-  }
-  return (
-    <div className={`case-image-placeholder ${tall ? 'case-image-tall' : ''}`}>
-      <span>{label}</span>
-      <span className="case-image-size">{size}</span>
-    </div>
   )
 }
