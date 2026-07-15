@@ -125,10 +125,40 @@
   color: var(--lime-dark);
 }
 
+.pill-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.skill-pill {
+  background: var(--paper-raised);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+  padding: 10px 18px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
 @media (max-width: 720px) {
-  .about-hero { grid-template-columns: 1fr; padding: 40px 20px 32px; }
+  .about-hero {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 36px 20px 36px;
+  }
   .about-photo { max-width: 140px; margin: 0; order: -1; }
-  .about-section { padding: 32px 20px; }
-  .timeline-row { grid-template-columns: 1fr; gap: 8px; }
+
+  /* убираем разделители между секциями на мобильной верстке */
+  .about-section {
+    padding: 28px 20px;
+    border-top: none;
+  }
+  .about-section h2 { margin-bottom: 20px; }
+
+  .timeline { gap: 28px; }
+  .timeline-row { grid-template-columns: 1fr; gap: 6px; }
+  .timeline-list { margin-top: 4px; }
+
   .chip-grid { grid-template-columns: 1fr; }
 }

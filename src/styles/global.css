@@ -1,20 +1,20 @@
 :root {
-  --paper: #F6F7DC;
+  --paper: #F3F1FB;
   --paper-raised: #FFFFFF;
-  --ink: #10120D;
-  --ink-soft: #5B5F52;
-  --line: #E2E3C4;
+  --ink: #14132B;
+  --ink-soft: #6B6B85;
+  --line: #E6E2F5;
   --lime: #CFFB3D;
   --lime-dark: #A9D42B;
-  --dark: #0D0F0A;
+  --dark: #14132B;
   --badge-red: #FF4B4B;
   --badge-purple: #6B4EFF;
   --badge-blue: #2F6BFF;
   --badge-green: #2FAE5C;
 
-  --font-display: 'Plus Jakarta Sans', 'Arial Rounded MT Bold', sans-serif;
-  --font-body: 'Inter', -apple-system, sans-serif;
-  --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+  --font-display: 'Montserrat', -apple-system, sans-serif;
+  --font-body: 'Montserrat', -apple-system, sans-serif;
+  --font-mono: 'Montserrat', -apple-system, sans-serif;
 
   --container: 1160px;
   --radius: 20px;
@@ -42,7 +42,7 @@ a { color: inherit; text-decoration: none; }
 button { font-family: inherit; cursor: pointer; }
 
 :focus-visible {
-  outline: 2px solid var(--indigo);
+  outline: 2px solid var(--badge-purple);
   outline-offset: 3px;
 }
 
