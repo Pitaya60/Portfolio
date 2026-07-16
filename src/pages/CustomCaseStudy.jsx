@@ -135,7 +135,7 @@ function BlockBody({ block, company }) {
         <div className="cs-screens">
           {block.items.map((s, i) => (
             <div key={i}>
-              <ImageSlot label={s.label || `Экран — ${company}`} size={s.size || '1400×1000'} />
+              <ImageSlot label={s.label || `Экран — ${company}`} size={s.size || '1400×1000'} tall={s.tall} />
               {s.caption && <p className="cs-screen-caption">{s.caption}</p>}
             </div>
           ))}
@@ -161,6 +161,51 @@ function BlockBody({ block, company }) {
         </>
       )
 
+    case 'table':
+      return (
+        <div className="cs-table-wrap">
+          <table className="cs-table">
+            <thead>
+              <tr>
+                <th className="cs-table-num">№</th>
+                <th>{block.columns?.[0] || 'Что я заметила'}</th>
+                <th>{block.columns?.[1] || 'Почему это проблема'}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {block.items.map((row, i) => (
+                <tr key={i}>
+                  <td className="cs-table-num">{i + 1}</td>
+                  <td>{row.note}</td>
+                  <td>{row.reason}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )
+
+    case 'cjm':
+      return (
+        <div className="cs-cjm-wrap">
+          <table className="cs-cjm-table">
+            <thead>
+              <tr>
+                <th className="cs-cjm-row-label">Шаг</th>
+                {block.columns.map((c, i) => <th key={i}>{c.step}</th>)}
+              </tr>
+            </thead>
+            <tbody>
+              <CjmRow label="Результат" columns={block.columns} field="result" />
+              <CjmRow label="Барьеры" columns={block.columns} field="barrier" />
+              <CjmRow label="Эмоции" columns={block.columns} field="emotion" emoji />
+              <CjmRow label="Цитаты" columns={block.columns} field="quote" quote />
+              <CjmRow label="Улучшения" columns={block.columns} field="improvement" />
+            </tbody>
+          </table>
+        </div>
+      )
+
     case 'note':
       return <div className="cs-note">{block.text}</div>
 
@@ -174,4 +219,17 @@ function BlockBody({ block, company }) {
     default:
       return null
   }
+}
+
+function CjmRow({ label, columns, field, emoji, quote }) {
+  return (
+    <tr>
+      <td className="cs-cjm-row-label">{label}</td>
+      {columns.map((c, i) => (
+        <td key={i} className={emoji ? 'cs-cjm-emoji' : quote ? 'cs-cjm-quote' : ''}>
+          {quote ? `«${c[field]}»` : c[field]}
+        </td>
+      ))}
+    </tr>
+  )
 }
