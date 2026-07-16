@@ -83,7 +83,7 @@ export default function CaseStudy() {
           <ImageSlot
             src={coverImages[1]}
             label={`Экраны — ${item.company}`}
-            size="900×900"
+            size="900×1100"
             className="summary-image"
           />
         </div>
@@ -161,7 +161,7 @@ export default function CaseStudy() {
             <h3 className="report-h3">Проблема пользователя</h3>
             <div className="pills-card">
               {item.problemPills.map((p, i) => (
-                <span key={p} className={`report-pill ${i % 3 === 1 ? 'report-pill-dark' : ''}`}>{p}</span>
+                <span key={p} className={`report-pill ${i % 2 === 1 ? 'report-pill-dark' : ''}`}>{p}</span>
               ))}
             </div>
           </>
@@ -179,7 +179,7 @@ export default function CaseStudy() {
           </>
         )}
 
-        <div className="hypothesis">{item.hypothesis}</div>
+        {item.hypothesis && <div className="hypothesis">{item.hypothesis}</div>}
       </section>
 
       {galleryImages.length > 0 || item.solution ? (
@@ -190,7 +190,7 @@ export default function CaseStudy() {
             <ImageSlot src={galleryImages[1]} label="Мокап — вариант 2" size="700×900" className="prototype-image tilt-right" />
           </div>
           <div className="final-box">
-            <ImageSlot src={galleryImages[2]} label={`Финальный экран — ${item.company}`} size="1400×2400" className="final-image" />
+            <ImageSlot src={galleryImages[2]} label={`Финальный экран — ${item.company}`} size="1000×1300" className="final-image" />
           </div>
         </section>
       ) : null}

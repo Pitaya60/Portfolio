@@ -132,7 +132,7 @@
 .summary-body { font-size: 14px; line-height: 1.7; color: var(--rv-text); }
 .summary-card-dark .summary-body { color: #EDEBFB; }
 
-.summary-image { border-radius: 16px; height: 100%; }
+.summary-image { border-radius: 16px; }
 
 /* Tables */
 .report-table-wrap {
@@ -324,6 +324,7 @@
   width: 100%;
   border-radius: 12px;
   display: block;
+  object-fit: cover;
 }
 
 .case-image-placeholder {
