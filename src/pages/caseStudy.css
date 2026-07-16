@@ -358,3 +358,237 @@
   .report-header { padding: 24px 20px 0; }
   .case-next { padding: 0 20px 64px; }
 }
+
+/* ───────── Custom long-form case template ───────── */
+
+.cs-hero {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 32px;
+  padding: 40px 24px 56px;
+  align-items: start;
+}
+
+.cs-hero-cover { border-radius: 16px; }
+
+.cs-facts {
+  background: #fff;
+  border-radius: 16px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  box-shadow: 0 2px 14px rgba(20, 19, 43, 0.06);
+}
+
+.cs-fact-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--rv-text-soft);
+  margin: 0 0 4px;
+}
+
+.cs-fact-value { font-size: 15px; font-weight: 600; margin: 0; color: var(--rv-text); }
+
+.cs-title-block { padding: 0 24px 32px; max-width: 860px; }
+
+.cs-title-block h1 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(28px, 4.5vw, 42px);
+  line-height: 1.15;
+  margin: 0 0 16px;
+  color: var(--rv-text);
+}
+
+.cs-title-block .cs-subtitle {
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--rv-text-soft);
+}
+
+.cs-block { padding: 8px 24px 56px; }
+
+.cs-block-title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 26px;
+  color: var(--rv-text);
+  margin: 0 0 24px;
+}
+
+.cs-text p {
+  font-size: 15px;
+  line-height: 1.75;
+  color: var(--rv-text-soft);
+  max-width: 760px;
+  margin: 0 0 14px;
+}
+.cs-text p:last-child { margin-bottom: 0; }
+
+/* card grid — tasks, ux solutions, contribution */
+.cs-card-grid {
+  display: grid;
+  grid-template-columns: repeat(var(--cs-cols, 2), 1fr);
+  gap: 16px;
+}
+
+.cs-card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 22px;
+  box-shadow: 0 2px 14px rgba(20, 19, 43, 0.06);
+}
+
+.cs-card h4 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--rv-violet);
+  margin: 0 0 8px;
+}
+
+.cs-card p { font-size: 14px; line-height: 1.6; color: var(--rv-text); margin: 0; }
+
+.cs-card ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.cs-card ul li { font-size: 14px; line-height: 1.5; color: var(--rv-text); padding-left: 16px; position: relative; }
+.cs-card ul li::before { content: '•'; position: absolute; left: 0; color: var(--rv-violet); }
+
+/* two-column split (Моя роль, Анализ ТЗ) */
+.cs-two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.cs-two-col .cs-card { background: var(--rv-lav-light); }
+.cs-two-col .cs-card:last-child { background: var(--rv-violet); color: #fff; }
+.cs-two-col .cs-card:last-child h4 { color: #fff; }
+.cs-two-col .cs-card:last-child p,
+.cs-two-col .cs-card:last-child li { color: #EDEBFB; }
+.cs-two-col .cs-card:last-child li::before { color: var(--rv-cyan); }
+
+/* checklist card */
+.cs-checklist {
+  background: #fff;
+  border-radius: 16px;
+  padding: 24px 28px;
+  box-shadow: 0 2px 14px rgba(20, 19, 43, 0.06);
+}
+
+.cs-checklist ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; }
+.cs-checklist li {
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--rv-text);
+  padding-left: 28px;
+  position: relative;
+}
+.cs-checklist li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #17A15E;
+  font-weight: 700;
+}
+
+/* horizontal process timeline */
+.cs-timeline {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0;
+  background: #fff;
+  border-radius: 16px;
+  padding: 28px 24px;
+  box-shadow: 0 2px 14px rgba(20, 19, 43, 0.06);
+}
+
+.cs-timeline-step {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--rv-text);
+  background: var(--rv-lav-light);
+  padding: 12px 18px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.cs-timeline-arrow {
+  color: var(--rv-violet);
+  font-size: 18px;
+  margin: 0 12px;
+}
+
+/* image + text block (old interface, landing work) */
+.cs-image-text {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  align-items: center;
+}
+
+/* stacked large screens */
+.cs-screens { display: flex; flex-direction: column; gap: 48px; }
+.cs-screen-caption {
+  font-size: 14px;
+  color: var(--rv-text-soft);
+  margin: 14px 0 0;
+  max-width: 640px;
+}
+
+/* before / after compare */
+.cs-compare-images {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  align-items: start;
+  margin-bottom: 24px;
+}
+
+.cs-compare-label {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--rv-text-soft);
+  margin: 0 0 10px;
+  text-align: center;
+}
+
+/* FAQ note box */
+.cs-note {
+  background: var(--rv-lav-light);
+  border-radius: 12px;
+  padding: 16px 20px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--rv-text);
+  margin-top: 16px;
+}
+
+/* conclusion highlight */
+.cs-conclusion {
+  background: var(--rv-violet-dark);
+  color: #fff;
+  border-radius: 16px;
+  padding: 32px;
+  font-size: 15px;
+  line-height: 1.75;
+}
+.cs-conclusion p { margin: 0 0 12px; }
+.cs-conclusion p:last-child { margin-bottom: 0; }
+
+@media (max-width: 860px) {
+  .cs-hero { grid-template-columns: 1fr; padding: 32px 20px 40px; }
+  .cs-title-block { padding: 0 20px 24px; }
+  .cs-block { padding: 8px 20px 40px; }
+  .cs-card-grid { grid-template-columns: 1fr !important; }
+  .cs-two-col { grid-template-columns: 1fr; }
+  .cs-image-text { grid-template-columns: 1fr; }
+  .cs-compare-images { grid-template-columns: 1fr; }
+  .cs-timeline { padding: 20px; }
+}

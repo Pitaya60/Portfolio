@@ -1,6 +1,7 @@
 import { useParams, Link, Navigate } from 'react-router-dom'
 import caseStudies from '../data/caseStudies.js'
 import ImageSlot from '../components/ImageSlot.jsx'
+import CustomCaseStudy from './CustomCaseStudy.jsx'
 import './caseStudy.css'
 
 export default function CaseStudy() {
@@ -8,6 +9,8 @@ export default function CaseStudy() {
   const item = caseStudies.find((c) => c.slug === slug)
 
   if (!item) return <Navigate to="/" replace />
+
+  if (item.customSections) return <CustomCaseStudy item={item} />
 
   const coverImages = item.images?.cover || []
   const galleryImages = item.images?.gallery || []
