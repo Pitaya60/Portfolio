@@ -430,10 +430,12 @@ const caseStudies = [
     tools: 'Figma, Maze',
     tags: ['EdTech', 'Landing', 'Conversion'],
     coverImage: null,
-    images: {
-      cover: [], // TODO: обложка + доп. экран, рекомендуемые размеры см. подписи плейсхолдеров
-      gallery: [], // TODO: мокапы решений и финальный экран, размеры — см. подписи плейсхолдеров
-    },
+    coverImage: '/case-images/coursiv/cover.jpg', // обложка карточки на главной
+
+images: {
+  cover: ['/case-images/coursiv/cover.jpg', '/case-images/coursiv/screens.jpg'],
+  gallery: ['/case-images/coursiv/solution-1.jpg', '/case-images/coursiv/solution-2.jpg', '/case-images/coursiv/final.jpg'],
+},
     summary:
       'Редизайн продающей страницы Coursiv для роста конверсии в покупку — через понятный оффер, доверие и структуру информации.',
     metrics: [
