@@ -409,14 +409,14 @@
   color: var(--rv-text-soft);
 }
 
-.cs-block { padding: 8px 24px 56px; }
+.cs-block { padding: 8px 24px 48px; }
 
 .cs-block-title {
   font-family: var(--font-display);
   font-weight: 800;
   font-size: 26px;
   color: var(--rv-text);
-  margin: 0 0 24px;
+  margin: 0 0 20px;
 }
 
 .cs-text p {
@@ -427,6 +427,8 @@
   margin: 0 0 14px;
 }
 .cs-text p:last-child { margin-bottom: 0; }
+
+.cs-text-full p { max-width: none; }
 
 /* card grid — tasks, ux solutions, contribution */
 .cs-card-grid {
@@ -456,6 +458,31 @@
 .cs-card ul li { font-size: 14px; line-height: 1.5; color: var(--rv-text); padding-left: 16px; position: relative; }
 .cs-card ul li::before { content: '•'; position: absolute; left: 0; color: var(--rv-violet); }
 
+/* combo — two different block types side by side (Задача + Что было не так) */
+.cs-combo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  align-items: start;
+}
+
+.cs-combo-col {
+  background: #fff;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 2px 14px rgba(20, 19, 43, 0.06);
+}
+
+.cs-combo-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--rv-violet);
+  margin: 0 0 16px;
+}
+
+.cs-pills-plain { padding: 0; box-shadow: none; }
+
 /* two-column split (Моя роль, Анализ ТЗ) */
 .cs-two-col {
   display: grid;
@@ -464,11 +491,11 @@
 }
 
 .cs-two-col .cs-card { background: var(--rv-lav-light); }
-.cs-two-col .cs-card:last-child { background: var(--rv-violet); color: #fff; }
-.cs-two-col .cs-card:last-child h4 { color: #fff; }
-.cs-two-col .cs-card:last-child p,
-.cs-two-col .cs-card:last-child li { color: #EDEBFB; }
-.cs-two-col .cs-card:last-child li::before { color: var(--rv-cyan); }
+.cs-two-col .cs-card:first-child { background: var(--rv-violet); color: #fff; }
+.cs-two-col .cs-card:first-child h4 { color: #fff; }
+.cs-two-col .cs-card:first-child p,
+.cs-two-col .cs-card:first-child li { color: #EDEBFB; }
+.cs-two-col .cs-card:first-child li::before { color: var(--rv-cyan); }
 
 /* checklist card */
 .cs-checklist {
@@ -483,7 +510,7 @@
   font-size: 15px;
   line-height: 1.5;
   color: var(--rv-text);
-  padding-left: 28px;
+  padding-left: 32px;
   position: relative;
 }
 .cs-checklist li::before {
@@ -491,9 +518,19 @@
   position: absolute;
   left: 0;
   top: 0;
-  color: #17A15E;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--rv-violet);
+  color: #fff;
+  font-size: 12px;
   font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
+.cs-checklist-plain { background: none; padding: 0; box-shadow: none; }
 
 /* horizontal process timeline */
 .cs-timeline {
@@ -668,6 +705,7 @@ thead .cs-cjm-row-label { background: var(--rv-violet); color: #fff; }
   .cs-block { padding: 8px 20px 40px; }
   .cs-card-grid { grid-template-columns: 1fr !important; }
   .cs-two-col { grid-template-columns: 1fr; }
+  .cs-combo { grid-template-columns: 1fr; }
   .cs-image-text { grid-template-columns: 1fr; }
   .cs-compare-images { grid-template-columns: 1fr; }
   .cs-timeline { padding: 20px; }

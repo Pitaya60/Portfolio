@@ -56,7 +56,7 @@ function BlockBody({ block, company }) {
   switch (block.type) {
     case 'text':
       return (
-        <div className="cs-text">
+        <div className={`cs-text ${block.fullWidth ? 'cs-text-full' : ''}`}>
           {block.paragraphs.map((p, i) => <p key={i}>{p}</p>)}
         </div>
       )
@@ -103,7 +103,30 @@ function BlockBody({ block, company }) {
       return (
         <div className="pills-card">
           {block.items.map((p, i) => (
-            <span key={p} className={`report-pill ${i % 3 === 1 ? 'report-pill-dark' : ''}`}>{p}</span>
+            <span key={p} className={`report-pill ${i % 2 === 1 ? 'report-pill-dark' : ''}`}>{p}</span>
+          ))}
+        </div>
+      )
+
+    case 'combo':
+      return (
+        <div className="cs-combo">
+          {block.columns.map((col, i) => (
+            <div className="cs-combo-col" key={i}>
+              {col.title && <h4 className="cs-combo-title">{col.title}</h4>}
+              {col.type === 'checklist' && (
+                <div className="cs-checklist cs-checklist-plain">
+                  <ul>{col.items.map((it, j) => <li key={j}>{it}</li>)}</ul>
+                </div>
+              )}
+              {col.type === 'pills' && (
+                <div className="pills-card cs-pills-plain">
+                  {col.items.map((p, j) => (
+                    <span key={p} className={`report-pill ${j % 2 === 1 ? 'report-pill-dark' : ''}`}>{p}</span>
+                  ))}
+                </div>
+              )}
+            </div>
           ))}
         </div>
       )
