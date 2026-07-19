@@ -1,25 +1,46 @@
 import { Link } from 'react-router-dom'
+import contacts from '../data/contacts.js'
+import { useContact } from '../context/ContactContext.jsx'
 import './footer.css'
 
 export default function Footer() {
-  return (
-    <footer id="contact" className="footer">
-      <div className="footer-dots" aria-hidden="true" />
+  const { openContact } = useContact()
+  const year = new Date().getFullYear()
 
-      <div className="wrap footer-bottom">
-        <div className="footer-col">
-          <p className="footer-col-title">Навигация</p>
+  return (
+    <footer className="footer">
+      <div className="wrap footer-inner">
+        <div className="footer-lead">
+          <p className="footer-name">{contacts.name}</p>
+          <p className="footer-tagline">
+            {contacts.role} · {contacts.location}
+          </p>
+          <button className="btn btn-invert footer-cta" onClick={openContact}>
+            Написать мне
+          </button>
+        </div>
+
+        <nav className="footer-nav" aria-label="Навигация в подвале">
+          <p className="footer-col-title">Разделы</p>
           <a href="/#work">Кейсы</a>
           <Link to="/about">Обо мне</Link>
-          <a href="/resume.pdf" target="_blank" rel="noreferrer">Резюме</a>
-          <a href="#contact">Контакт</a>
+          <a href={contacts.resume} target="_blank" rel="noreferrer">Резюме</a>
+        </nav>
+
+        <div className="footer-nav">
+          <p className="footer-col-title">Связь</p>
+          <a href={contacts.telegram} target="_blank" rel="noreferrer">Telegram</a>
+          <a href={contacts.telegramChannel} target="_blank" rel="noreferrer">
+            Telegram-канал
+          </a>
+          <a href={contacts.linkedin} target="_blank" rel="noreferrer">LinkedIn</a>
+          <a href={`mailto:${contacts.email}`}>{contacts.email}</a>
         </div>
-        <div className="footer-col">
-          <p className="footer-col-title">Соцсети</p>
-          <a href="https://linkedin.com" target="_blank" rel="noreferrer">LinkedIn</a>
-          <a href="https://t.me" target="_blank" rel="noreferrer">Telegram</a>
-        </div>
-        <p className="footer-copy">© 2026 Абдулла Камилла. Все права защищены.</p>
+      </div>
+
+      <div className="wrap footer-base">
+        <p>© {year} {contacts.name}</p>
+        <p>Портфолио собрано на React</p>
       </div>
     </footer>
   )

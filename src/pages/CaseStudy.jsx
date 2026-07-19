@@ -17,9 +17,15 @@ export default function CaseStudy() {
 
   return (
     <article className="case">
-      <header className="wrap report-header">
-        <Link to="/" className="back-link">← Все кейсы</Link>
-      </header>
+      <div className="wrap case-topbar">
+        <Link to="/#work" className="back-link">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <path d="M19 12H6M11 6l-6 6 6 6" />
+          </svg>
+          Все кейсы
+        </Link>
+        {item.year && <span className="case-topbar-year">{item.year}</span>}
+      </div>
 
       <section className="wrap">
         <div className="report-hero">
@@ -131,7 +137,7 @@ export default function CaseStudy() {
         {item.interviewColumns && (
           <>
             <h3 className="report-h3">User Interviews</h3>
-            <div className="report-table-wrap">
+            <div className="report-table-wrap" tabIndex={0}>
               <table className="interview-table">
                 <thead>
                   <tr>
@@ -160,8 +166,8 @@ export default function CaseStudy() {
           <>
             <h3 className="report-h3">Проблема пользователя</h3>
             <div className="pills-card">
-              {item.problemPills.map((p, i) => (
-                <span key={p} className={`report-pill ${i % 2 === 1 ? 'report-pill-dark' : ''}`}>{p}</span>
+              {item.problemPills.map((p) => (
+                <span key={p} className="report-pill">{p}</span>
               ))}
             </div>
           </>
@@ -203,9 +209,9 @@ export default function CaseStudy() {
         </div>
       </section>
 
-      <footer className="wrap case-next">
-        <Link to="/" className="btn btn-primary">К списку кейсов</Link>
-      </footer>
+      <nav className="wrap case-next" aria-label="Другие кейсы">
+        <Link to="/" className="btn btn-ghost">К списку кейсов</Link>
+      </nav>
     </article>
   )
 }

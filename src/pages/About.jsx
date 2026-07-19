@@ -1,3 +1,5 @@
+import contacts from '../data/contacts.js'
+import { useContact } from '../context/ContactContext.jsx'
 import './about.css'
 
 const experience = [
@@ -99,12 +101,15 @@ const languages = [
 ]
 
 export default function About() {
+  const { openContact } = useContact()
+
   return (
     <article className="about-page">
       <section className="wrap about-hero">
         <div className="about-hero-text">
-          <h1>Абдулла Камилла</h1>
-          <p className="about-role">UX/UI Designer · Product Designer</p>
+          <p className="eyebrow eyebrow-live">Открыта к предложениям</p>
+          <h1>{contacts.name}</h1>
+          <p className="about-role">{contacts.role}</p>
           <p className="about-lead">
             UX/UI-дизайнер с опытом почти 3 года в создании цифровых продуктов для FinTech,
             EdTech, MedTech и AI-платформ. Специализируюсь на пользовательских исследованиях,
@@ -112,13 +117,18 @@ export default function About() {
             AI-продукта в сфере здравоохранения, для которого команда выиграла грант на 40 млн ₸.
           </p>
           <div className="about-contacts">
-            <a href="mailto:camillaabdulla04@gmail.com">camillaabdulla04@gmail.com</a>
-            <a href="tel:+77078239020">+7 (707) 823-90-20</a>
-            <span>Алматы, Казахстан</span>
+            <a href={`mailto:${contacts.email}`}>{contacts.email}</a>
+            <a href={`tel:${contacts.phoneHref}`}>{contacts.phone}</a>
+            <span>{contacts.location}</span>
           </div>
-          <a href="/resume.pdf" target="_blank" rel="noreferrer" className="btn btn-primary">
-            Скачать резюме
-          </a>
+          <div className="about-actions">
+            <button type="button" className="btn btn-primary" onClick={openContact}>
+              Написать мне
+            </button>
+            <a href={contacts.resume} target="_blank" rel="noreferrer" className="btn btn-ghost">
+              Скачать резюме
+            </a>
+          </div>
         </div>
         <div className="about-photo" aria-hidden="true">
           <span>Фото</span>

@@ -1,84 +1,134 @@
+/* ── Карточка кейса ────────────────────────────────────────── */
+
 .case-card {
   display: flex;
   flex-direction: column;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
   background: var(--paper-raised);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
   overflow: hidden;
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
 }
 
 .case-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 24px rgba(16, 18, 13, 0.08);
+  border-color: var(--line-strong);
+  box-shadow: var(--shadow);
+  transform: translateY(-3px);
 }
 
-.case-card-thumb {
-  position: relative;
-  background: var(--dark);
-  min-height: 200px;
+/* Обложка */
+.case-card-media { position: relative; background: var(--paper-sunken); }
+
+.case-card-cover {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.case-card-cover-empty {
   display: flex;
-  align-items: flex-start;
-  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+  padding: var(--s-5);
+  background:
+    linear-gradient(0deg, var(--paper-sunken), var(--paper-sunken));
+  color: var(--ink-faint);
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(20px, 3vw, 32px);
+  letter-spacing: -0.02em;
+  text-align: center;
 }
 
 .case-card-badge {
   position: absolute;
-  top: 16px;
-  left: 16px;
-  z-index: 2;
-  font-family: var(--font-body);
-  font-weight: 700;
-  font-size: 11px;
+  top: var(--s-4);
+  left: var(--s-4);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  letter-spacing: 0.03em;
   color: #fff;
-  padding: 5px 12px;
+  padding: 6px 12px;
   border-radius: var(--radius-pill);
 }
 
-.case-card-cover {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-}
-
-.case-card-cover-placeholder {
-  width: 100%;
-  height: 200px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  font-family: var(--font-mono);
-  font-size: 12px;
-  line-height: 1.5;
-  color: #6B6E5E;
-  border: 1px dashed #3A3D30;
-}
-
-.badge-red { background: var(--badge-red); }
 .badge-purple { background: var(--badge-purple); }
 .badge-blue { background: var(--badge-blue); }
 .badge-green { background: var(--badge-green); }
+.badge-red { background: var(--badge-red); }
 
+/* Текстовая часть */
 .case-card-body {
-  padding: 24px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: var(--s-3);
+  padding: var(--s-5);
   flex: 1;
 }
 
-.case-card h3 {
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-size: 20px;
+.case-card-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--s-2);
   margin: 0;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.case-card-index { color: var(--accent); }
+.case-card-dot { color: var(--line-strong); }
+
+.case-card-title {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: clamp(19px, 2.2vw, 24px);
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  margin: 0;
+  text-wrap: balance;
 }
 
 .case-card-summary {
-  font-size: 14px;
-  color: var(--ink-soft);
   margin: 0;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+
+.case-card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+  margin-top: auto;
+  padding-top: var(--s-2);
+}
+
+.case-card-link { margin-top: var(--s-3); }
+
+/* Главный кейс — горизонтальная раскладка */
+@media (min-width: 861px) {
+  .case-card-featured {
+    display: grid;
+    grid-template-columns: 1.05fr 1fr;
+    align-items: stretch;
+  }
+
+  .case-card-featured .case-card-media { height: 100%; }
+
+  .case-card-featured .case-card-cover {
+    height: 100%;
+    aspect-ratio: auto;
+    min-height: 340px;
+  }
+
+  .case-card-featured .case-card-body {
+    padding: clamp(28px, 3vw, 44px);
+    justify-content: center;
+  }
 }
