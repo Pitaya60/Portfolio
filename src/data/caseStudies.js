@@ -594,7 +594,7 @@ const caseStudies = [
         type: 'screens',
         items: [
           { 
-            src: '/case-images/coursiv/images_gallery[0].png',
+            src: '/case-images/coursiv/images_gallery[0].jpg',
             label: 'Дальше я собрала мокап из сайтов конкурентов, которые помогли сделать selling page',
             size: '700×900'
            },
