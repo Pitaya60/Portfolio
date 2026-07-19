@@ -428,7 +428,7 @@ const caseStudies = [
     heroSubtitle:
       'Coursiv — онлайн-платформа обучения. Selling page — первый экран воронки, который видит пользователь до подписки или покупки курса. Задача: разобраться, почему падает конверсия, и предложить решение.',
     images: {
-      cover: [], // TODO: обложка проекта, рекомендуемый размер 1400×1000
+      cover: ['/case-images/coursiv/images.cover[0].jpg'], // TODO: обложка проекта, рекомендуемый размер 1400×1000
     },
     facts: [
       { label: 'Компания', value: 'Coursiv (Zimran Team)' },
@@ -566,6 +566,7 @@ const caseStudies = [
       {
         title: 'Competitor Benchmarking',
         type: 'imageText',
+        imageSrc: '/case-images/coursiv/images_benchmark.jpg',
         imageLabel: 'Скрин: сравнение рекламных страниц конкурентов',
         imageSize: '900×600',
         paragraphs: [
@@ -592,8 +593,11 @@ const caseStudies = [
         title: 'Прототип и финальный экран',
         type: 'screens',
         items: [
-          { label: 'Мокап — вариант hero-блока', size: '700×900' },
-          { label: 'Мокап — вариант блока доверия и тарифов', size: '700×900' },
+          { 
+            src: '/case-images/coursiv/images_gallery[0].png',
+            label: 'Дальше я собрала мокап из сайтов конкурентов, которые помогли сделать selling page',
+            size: '700×900'
+           },
           { label: `Финальный редизайн selling page — ${'Coursiv'}`, size: '1000×1300', tall: true },
         ],
       },
