@@ -225,7 +225,7 @@
 .cs-two-col .cs-card:first-child h3 { color: #fff; }
 .cs-two-col .cs-card:first-child p,
 .cs-two-col .cs-card:first-child li { color: rgba(255, 255, 255, 0.86); }
-.cs-two-col .cs-card:first-child li::before { background: var(--accent-signal); }
+.cs-two-col .cs-card:first-child li::before { background: var(--lime); }
 
 /* ── Чек-лист ─────────────────────────────────────────────── */
 .cs-checklist {

@@ -13,12 +13,12 @@ const contacts = {
   phoneHref: '+77078239020',
 
   // TODO: замените на свои ссылки
-  telegram: 'https://t.me/username',          // личный аккаунт
-  telegramLabel: '@username',
-  telegramChannel: 'https://t.me/channel',    // группа / канал
-  telegramChannelLabel: '@channel',
-  linkedin: 'https://linkedin.com/in/username',
-  linkedinLabel: 'linkedin.com/in/username',
+  telegram: 'https://t.me/PastelSiren04',          // личный аккаунт
+  telegramLabel: '@PastelSiren04',
+  telegramChannel: 't.me/camillusworking',    // группа / канал
+  telegramChannelLabel: '@camillusworking',
+  linkedin: 'www.linkedin.com/in/camilla-abdulla-685310276/?skipRedirect=true',
+  linkedinLabel: 'linkedin.com/in/camilla-abdulla-685310276',
 
   resume: '/resume.pdf',
   replyTime: 'Отвечаю в течение рабочего дня',

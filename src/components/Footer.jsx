@@ -34,7 +34,6 @@ export default function Footer() {
             Telegram-канал
           </a>
           <a href={contacts.linkedin} target="_blank" rel="noreferrer">LinkedIn</a>
-          <a href={`mailto:${contacts.email}`}>{contacts.email}</a>
         </div>
       </div>
 

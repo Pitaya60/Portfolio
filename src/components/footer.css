@@ -1,4 +1,4 @@
-/* ── Подвал ────────────────────────────────────────────────── */
+/* ── Footer ────────────────────────────────────────────────── */
 
 .footer {
   margin-top: var(--section-y);
@@ -55,7 +55,7 @@
   color: var(--ink-invert);
   transition: color 0.15s ease;
 }
-.footer-nav a:hover { color: var(--accent-signal); }
+.footer-nav a:hover { color: var(--lime); }
 
 .footer-base {
   display: flex;
