@@ -16,7 +16,7 @@ const caseStudies = [
     year: '2025',
     role: 'UX/UI Designer, Graphic Designer',
     tags: ['MedTech', 'AI', 'Web', 'Mobile'],
-    coverImage: null,
+    coverImage: '/case-images/qmed/cover.png',
     summary:
       'Проектирование интерфейсов и визуальных материалов для AI-сервиса в сфере медицины — на стыке продуктового и графического дизайна.',
     heroSubtitle:
@@ -255,7 +255,7 @@ const caseStudies = [
     year: '2025',
     role: 'UX/UI Designer',
     tags: ['FinTech', 'Web', 'Redesign'],
-    coverImage: null,
+    coverImage: '/case-images/prodengi/Cover.png',
     summary:
       'Обновление одного из ключевых разделов финансового сервиса ProDengi.kz: понятнее структура, меньше когнитивной нагрузки, единый FAQ.',
     heroSubtitle:
@@ -428,7 +428,7 @@ const caseStudies = [
     heroSubtitle:
       'Coursiv — онлайн-платформа обучения. Selling page — первый экран воронки, который видит пользователь до подписки или покупки курса. Задача: разобраться, почему падает конверсия, и предложить решение.',
     images: {
-      cover: ['/case-images/coursiv/images.cover[0].jpg'], // TODO: обложка проекта, рекомендуемый размер 1400×1000
+      cover: ['/case-images/coursiv/cover-wide.jpg'],
     },
     facts: [
       { label: 'Компания', value: 'Coursiv (Zimran Team)' },
@@ -566,7 +566,7 @@ const caseStudies = [
       {
         title: 'Competitor Benchmarking',
         type: 'imageText',
-        imageSrc: '/case-images/coursiv/images_benchmark.jpg',
+        imageSrc: '/case-images/coursiv/benchmark.jpg',
         imageLabel: 'Скрин: сравнение рекламных страниц конкурентов',
         imageSize: '900×600',
         paragraphs: [
@@ -593,12 +593,17 @@ const caseStudies = [
         title: 'Прототип и финальный экран',
         type: 'screens',
         items: [
-          { 
-            src: '/case-images/coursiv/images_gallery[0].jpg',
+          {
+            src: '/case-images/coursiv/prototype-mockup.png',
             label: 'Дальше я собрала мокап из сайтов конкурентов, которые помогли сделать selling page',
-            size: '700×900'
-           },
-          { label: `Финальный редизайн selling page — ${'Coursiv'}`, size: '1000×1300', tall: true },
+            size: '700×900',
+          },
+          {
+            src: '/case-images/coursiv/final-selling-page.jpg',
+            label: `Финальный редизайн selling page — ${'Coursiv'}`,
+            size: '1000×1300',
+            tall: true,
+          },
         ],
       },
       {
