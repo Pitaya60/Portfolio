@@ -34,16 +34,10 @@
   flex: none;
   width: 38px;
   height: 38px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 11px;
-  background: var(--accent);
-  color: #fff;
-  font-family: var(--font-heading);
-  font-weight: 800;
-  font-size: 13px;
-  letter-spacing: 0.02em;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center top; /* чтобы в кадр попадало лицо, а не макушка */
+  border: 1px solid var(--line-strong);
 }
 
 .nav-logo-text { display: flex; flex-direction: column; min-width: 0; }
@@ -184,5 +178,5 @@
 
 @media (max-width: 380px) {
   .nav-logo-name { font-size: 14px; }
-  .nav-logo-mark { width: 34px; height: 34px; border-radius: 10px; }
+  .nav-logo-mark { width: 34px; height: 34px; border-radius: 50%; }
 }

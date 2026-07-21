@@ -45,7 +45,11 @@ export default function Nav() {
       <header className={`nav ${scrolled ? 'nav-scrolled' : ''}`}>
         <div className="nav-inner">
           <Link to="/" className="nav-logo" onClick={close}>
-            <span className="nav-logo-mark" aria-hidden="true">КА</span>
+          <img className="nav-logo-mark"
+          src="/case-images/avatar.jpg"
+          alt=""
+          aria-hidden="true"
+          />
             <span className="nav-logo-text">
               <span className="nav-logo-name">{contacts.name}</span>
               <span className="nav-logo-role">{contacts.role}</span>
