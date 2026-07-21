@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import ImageSlot from '../components/ImageSlot.jsx'
 import caseStudies from '../data/caseStudies.js'
+import './customCaseStudy.css'
 
 export default function CustomCaseStudy({ item }) {
   const coverImages = item.images?.cover || []
@@ -262,25 +263,51 @@ function BlockBody({ block, company }) {
       )
 
     case 'cjm':
-      return (
-        <ScrollBox hint="Таблица прокручивается вбок">
-          <table className="cs-cjm-table">
-            <thead>
-              <tr>
-                <th className="cs-cjm-row-label">Шаг</th>
-                {block.columns.map((c, i) => <th key={i}>{c.step}</th>)}
-              </tr>
-            </thead>
-            <tbody>
-              <CjmRow label="Результат" columns={block.columns} field="result" />
-              <CjmRow label="Барьеры" columns={block.columns} field="barrier" />
-              <CjmRow label="Эмоции" columns={block.columns} field="emotion" emoji />
-              <CjmRow label="Цитаты" columns={block.columns} field="quote" quote />
-              <CjmRow label="Улучшения" columns={block.columns} field="improvement" />
-            </tbody>
-          </table>
-        </ScrollBox>
-      )
+  return (
+    <>
+      {/* Десктоп: таблица с горизонтальным скроллом */}
+      <ScrollBox hint="Таблица прокручивается вбок" className="cs-cjm-desktop">
+        <table className="cs-cjm-table">
+          <thead>
+            <tr>
+              <th className="cs-cjm-row-label">Шаг</th>
+              {block.columns.map((c, i) => <th key={i}>{c.step}</th>)}
+            </tr>
+          </thead>
+          <tbody>
+            <CjmRow label="Ожидаемый результат" columns={block.columns} field="result" />
+            <CjmRow label="Барьеры и их причины" columns={block.columns} field="barrier" />
+            <CjmRow label="Эмоции" columns={block.columns} field="emotion" emoji />
+            <CjmRow label="Цитаты" columns={block.columns} field="quote" quote />
+            <CjmRow label="Пространство и особенности" columns={block.columns} field="context" />
+            <CjmRow label="Драйверы" columns={block.columns} field="driver" />
+            <CjmRow label="Улучшения" columns={block.columns} field="improvement" />
+          </tbody>
+        </table>
+      </ScrollBox>
+
+      {/* Мобильная версия: карточки-аккордеоны, один шаг = одна карточка */}
+      <div className="cs-cjm-cards">
+        {block.columns.map((c, i) => (
+          <details className="cs-cjm-card" key={i} open={i === 0}>
+            <summary>
+              <span className="cs-cjm-card-num">{String(i + 1).padStart(2, '0')}</span>
+              <span className="cs-cjm-card-step">{c.step}</span>
+            </summary>
+            <dl className="cs-cjm-card-body">
+              <div><dt>Ожидаемый результат</dt><dd>{c.result}</dd></div>
+              <div><dt>Барьеры и их причины</dt><dd>{c.barrier}</dd></div>
+              <div><dt>Эмоция</dt><dd>{c.emotion}</dd></div>
+              <div><dt>Цитата</dt><dd>«{c.quote}»</dd></div>
+              <div><dt>Пространство и особенности</dt><dd>{c.context}</dd></div>
+              <div><dt>Драйверы</dt><dd>{c.driver}</dd></div>
+              <div><dt>Улучшения</dt><dd>{c.improvement}</dd></div>
+            </dl>
+          </details>
+        ))}
+      </div>
+    </>
+  )
 
     case 'note':
       return <p className="cs-note">{block.text}</p>
@@ -297,9 +324,9 @@ function BlockBody({ block, company }) {
   }
 }
 
-function ScrollBox({ children, hint }) {
+function ScrollBox({ children, hint, className = '' }) {
   return (
-    <div className="cs-scrollbox">
+    <div className={`cs-scrollbox ${className}`}>
       <div className="cs-scrollbox-inner" tabIndex={0} role="group">
         {children}
       </div>

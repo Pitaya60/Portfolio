@@ -1,0 +1,68 @@
+/* По умолчанию карточки скрыты — их видно только на телефоне */
+.cs-cjm-cards { display: none; }
+
+@media (max-width: 720px) {
+  .cs-cjm-desktop { display: none; }
+  .cs-cjm-cards { display: flex; flex-direction: column; gap: 12px; }
+}
+
+/* Закрепляем колонку с названием строки при горизонтальном скролле (десктоп) */
+.cs-cjm-table th.cs-cjm-row-label,
+.cs-cjm-table td.cs-cjm-row-label {
+  position: sticky;
+  left: 0;
+  z-index: 2;
+  background: #fff; /* подставьте фон вашей страницы/карточки */
+}
+
+/* Карточки-аккордеоны для мобильной версии */
+.cs-cjm-card {
+  border: 1px solid #e5e5e5;
+  border-radius: 12px;
+  padding: 14px 16px;
+  background: #fafafa;
+}
+.cs-cjm-card summary {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  list-style: none;
+}
+.cs-cjm-card summary::-webkit-details-marker { display: none; }
+.cs-cjm-card summary::after {
+  content: '+';
+  margin-left: auto;
+  font-size: 20px;
+  color: #888;
+}
+.cs-cjm-card[open] summary::after { content: '−'; }
+
+.cs-cjm-card-num {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #6C5CE7; /* замените на акцентный цвет вашей темы */
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+}
+
+.cs-cjm-card-body {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.cs-cjm-card-body dt {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: .03em;
+  color: #888;
+  margin-bottom: 2px;
+}
+.cs-cjm-card-body dd { margin: 0; font-size: 14px; }
