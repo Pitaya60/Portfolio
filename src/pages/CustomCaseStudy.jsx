@@ -1,9 +1,12 @@
 import { Link } from 'react-router-dom'
 import ImageSlot from '../components/ImageSlot.jsx'
-import caseStudies from '../data/caseStudies.js'
+import { getCaseStudies } from '../data/caseStudies.js'
+import { useLang } from '../i18n/LanguageContext.jsx'
 import './customCaseStudy.css'
 
 export default function CustomCaseStudy({ item }) {
+  const { lang, t } = useLang()
+  const caseStudies = getCaseStudies(lang)
   const coverImages = item.images?.cover || []
 
   const currentIndex = caseStudies.findIndex((c) => c.slug === item.slug)
@@ -19,7 +22,7 @@ export default function CustomCaseStudy({ item }) {
             strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
             <path d="M19 12H6M11 18l-6-6 6-6" />
           </svg>
-          Все кейсы
+          {t('caseStudy.allCases')}
         </Link>
         <span className="case-counter">
           {String(currentIndex + 1).padStart(2, '0')} / {String(caseStudies.length).padStart(2, '0')}
@@ -51,7 +54,7 @@ export default function CustomCaseStudy({ item }) {
       <section className="wrap cs-cover">
         <ImageSlot
           src={coverImages[0]}
-          label={`Обложка проекта — ${item.company}`}
+          label={`${t('caseStudy.coverOf')} — ${item.company}`}
           size="1400×900"
           className="cs-cover-image"
         />
@@ -59,17 +62,17 @@ export default function CustomCaseStudy({ item }) {
 
       {/* ── Содержательные блоки ────────────────────── */}
       {item.customSections.map((block, i) => (
-        <Block key={i} block={block} number={i + 1} company={item.company} />
+        <Block key={i} block={block} number={i + 1} company={item.company} t={t} />
       ))}
 
       {/* ── Переход к следующему кейсу ──────────────── */}
-      <nav className="wrap case-next" aria-label="Другие кейсы">
+      <nav className="wrap case-next" aria-label={t('caseStudy.otherCases')}>
         {hasNext && (
           <Link to={`/case/${nextCase.slug}`} className="case-next-card">
-            <span className="label">Следующий кейс</span>
+            <span className="label">{t('caseStudy.nextCase')}</span>
             <span className="case-next-title">{nextCase.title}</span>
             <span className="arrow-link">
-              Открыть
+              {t('caseStudy.open')}
               <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
                 strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                 <path d="M5 12h13M13 6l6 6-6 6" />
@@ -77,14 +80,14 @@ export default function CustomCaseStudy({ item }) {
             </span>
           </Link>
         )}
-        <Link to="/" className="btn btn-ghost">К списку кейсов</Link>
+        <Link to="/" className="btn btn-ghost">{t('caseStudy.backToList')}</Link>
       </nav>
     </article>
   )
 }
 
 /* ── Обёртка блока: номер + заголовок + содержимое ─────────── */
-function Block({ block, number, company }) {
+function Block({ block, number, company, t }) {
   const wide = ['screens', 'table', 'cjm', 'compare'].includes(block.type)
 
   return (
@@ -95,12 +98,12 @@ function Block({ block, number, company }) {
           <h2 className="cs-block-title">{block.title}</h2>
         </div>
       )}
-      <BlockBody block={block} company={company} />
+      <BlockBody block={block} company={company} t={t} />
     </section>
   )
 }
 
-function BlockBody({ block, company }) {
+function BlockBody({ block, company, t }) {
   switch (block.type) {
     case 'text':
       return (
@@ -209,7 +212,7 @@ function BlockBody({ block, company }) {
             <figure className="cs-figure" key={i}>
               <ImageSlot
                 src={s.src}
-                label={s.label || `Экран — ${company}`}
+                label={s.label || `${t('caseStudy.screenOf')} — ${company}`}
                 size={s.size || '1400×1000'}
                 tall={s.tall}
               />
@@ -224,12 +227,12 @@ function BlockBody({ block, company }) {
         <>
           <div className="cs-compare-images">
             <figure className="cs-figure">
-              <p className="cs-compare-label cs-compare-before">Было</p>
-              <ImageSlot src={block.beforeSrc} label="Старый экран" size="900×1100" />
+              <p className="cs-compare-label cs-compare-before">{t('caseStudy.before')}</p>
+              <ImageSlot src={block.beforeSrc} label={t('caseStudy.oldScreen')} size="900×1100" />
             </figure>
             <figure className="cs-figure">
-              <p className="cs-compare-label cs-compare-after">Стало</p>
-              <ImageSlot src={block.afterSrc} label="Новый экран" size="900×1100" />
+              <p className="cs-compare-label cs-compare-after">{t('caseStudy.after')}</p>
+              <ImageSlot src={block.afterSrc} label={t('caseStudy.newScreen')} size="900×1100" />
             </figure>
           </div>
           <div className="cs-checklist">
@@ -244,9 +247,9 @@ function BlockBody({ block, company }) {
           <table className="cs-table">
             <thead>
               <tr>
-                <th className="cs-table-num">№</th>
-                <th>{block.columns?.[0] || 'Что я заметила'}</th>
-                <th>{block.columns?.[1] || 'Почему это проблема'}</th>
+                <th className="cs-table-num">{t('caseStudy.tableNum')}</th>
+                <th>{block.columns?.[0] || t('caseStudy.tableNote')}</th>
+                <th>{block.columns?.[1] || t('caseStudy.tableReason')}</th>
               </tr>
             </thead>
             <tbody>
@@ -266,22 +269,22 @@ function BlockBody({ block, company }) {
   return (
     <>
       {/* Десктоп: таблица с горизонтальным скроллом */}
-      <ScrollBox hint="Таблица прокручивается вбок" className="cs-cjm-desktop">
+      <ScrollBox hint={t('caseStudy.scrollHint')} className="cs-cjm-desktop">
         <table className="cs-cjm-table">
           <thead>
             <tr>
-              <th className="cs-cjm-row-label">Шаг</th>
+              <th className="cs-cjm-row-label">{t('caseStudy.cjm.step')}</th>
               {block.columns.map((c, i) => <th key={i}>{c.step}</th>)}
             </tr>
           </thead>
           <tbody>
-            <CjmRow label="Ожидаемый результат" columns={block.columns} field="result" />
-            <CjmRow label="Барьеры и их причины" columns={block.columns} field="barrier" />
-            <CjmRow label="Эмоции" columns={block.columns} field="emotion" emoji />
-            <CjmRow label="Цитаты" columns={block.columns} field="quote" quote />
-            <CjmRow label="Пространство и особенности" columns={block.columns} field="context" />
-            <CjmRow label="Драйверы" columns={block.columns} field="driver" />
-            <CjmRow label="Улучшения" columns={block.columns} field="improvement" />
+            <CjmRow label={t('caseStudy.cjm.result')} columns={block.columns} field="result" />
+            <CjmRow label={t('caseStudy.cjm.barrier')} columns={block.columns} field="barrier" />
+            <CjmRow label={t('caseStudy.cjm.emotion')} columns={block.columns} field="emotion" emoji />
+            <CjmRow label={t('caseStudy.cjm.quote')} columns={block.columns} field="quote" quote t={t} />
+            <CjmRow label={t('caseStudy.cjm.context')} columns={block.columns} field="context" />
+            <CjmRow label={t('caseStudy.cjm.driver')} columns={block.columns} field="driver" />
+            <CjmRow label={t('caseStudy.cjm.improvement')} columns={block.columns} field="improvement" />
           </tbody>
         </table>
       </ScrollBox>
@@ -295,13 +298,13 @@ function BlockBody({ block, company }) {
               <span className="cs-cjm-card-step">{c.step}</span>
             </summary>
             <dl className="cs-cjm-card-body">
-              <div><dt>Ожидаемый результат</dt><dd>{c.result}</dd></div>
-              <div><dt>Барьеры и их причины</dt><dd>{c.barrier}</dd></div>
-              <div><dt>Эмоция</dt><dd>{c.emotion}</dd></div>
-              <div><dt>Цитата</dt><dd>«{c.quote}»</dd></div>
-              <div><dt>Пространство и особенности</dt><dd>{c.context}</dd></div>
-              <div><dt>Драйверы</dt><dd>{c.driver}</dd></div>
-              <div><dt>Улучшения</dt><dd>{c.improvement}</dd></div>
+              <div><dt>{t('caseStudy.cjm.result')}</dt><dd>{c.result}</dd></div>
+              <div><dt>{t('caseStudy.cjm.barrier')}</dt><dd>{c.barrier}</dd></div>
+              <div><dt>{t('caseStudy.cjm.emotionOne')}</dt><dd>{c.emotion}</dd></div>
+              <div><dt>{t('caseStudy.cjm.quoteOne')}</dt><dd>{t('caseStudy.quoteOpen')}{c.quote}{t('caseStudy.quoteClose')}</dd></div>
+              <div><dt>{t('caseStudy.cjm.context')}</dt><dd>{c.context}</dd></div>
+              <div><dt>{t('caseStudy.cjm.driver')}</dt><dd>{c.driver}</dd></div>
+              <div><dt>{t('caseStudy.cjm.improvement')}</dt><dd>{c.improvement}</dd></div>
             </dl>
           </details>
         ))}
@@ -335,13 +338,13 @@ function ScrollBox({ children, hint, className = '' }) {
   )
 }
 
-function CjmRow({ label, columns, field, emoji, quote }) {
+function CjmRow({ label, columns, field, emoji, quote, t }) {
   return (
     <tr>
       <td className="cs-cjm-row-label">{label}</td>
       {columns.map((c, i) => (
         <td key={i} className={emoji ? 'cs-cjm-emoji' : quote ? 'cs-cjm-quote' : ''}>
-          {quote ? `«${c[field]}»` : c[field]}
+          {quote ? `${t('caseStudy.quoteOpen')}${c[field]}${t('caseStudy.quoteClose')}` : c[field]}
         </td>
       ))}
     </tr>

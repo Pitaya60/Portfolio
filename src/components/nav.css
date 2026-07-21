@@ -180,3 +180,25 @@
   .nav-logo-name { font-size: 14px; }
   .nav-logo-mark { width: 34px; height: 34px; border-radius: 50%; }
 }
+/* ── Правый блок шапки: переключатель языка + бургер ────────── */
+
+.nav-mobile-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: none;
+}
+
+/* На десктопе переключатель живёт внутри .nav-desktop,
+   поэтому компактный дубль рядом с бургером скрыт */
+.nav-mobile-controls .lang-switch { display: none; }
+
+.nav-mobile-lang {
+  display: flex;
+  justify-content: center;
+  padding: var(--s-3) 12px var(--s-1);
+}
+
+@media (max-width: 860px) {
+  .nav-mobile-controls .lang-switch { display: inline-flex; }
+}

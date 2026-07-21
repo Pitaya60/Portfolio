@@ -1,24 +1,47 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import notFoundMedia from '../data/notFoundMedia.js'
+import { useLang } from '../i18n/LanguageContext.jsx'
+import './notFound.css'
 
 export default function NotFound() {
+  const { lang, t } = useLang()
+  const [failed, setFailed] = useState(false)
+
+  const src = notFoundMedia.src?.trim()
+  const showImage = Boolean(src) && !failed
+  const alt = notFoundMedia.alt?.[lang] ?? ''
+
+  const slotStyle = {
+    aspectRatio: notFoundMedia.ratio || '4 / 3',
+    maxWidth: notFoundMedia.maxWidth || 420,
+  }
+
   return (
-    <div className="wrap section" style={{ textAlign: 'center', maxWidth: 560 }}>
-      <p className="eyebrow" style={{ marginBottom: 20 }}>Ошибка 404</p>
-      <h1
-        style={{
-          fontFamily: 'var(--font-display)',
-          fontWeight: 600,
-          fontSize: 'clamp(24px, 4vw, 34px)',
-          letterSpacing: '-0.02em',
-          margin: '0 0 12px',
-        }}
-      >
-        Такой страницы нет
-      </h1>
-      <p style={{ color: 'var(--ink-soft)', margin: '0 0 28px' }}>
-        Возможно, ссылка устарела. Кейсы собраны на главной.
-      </p>
-      <Link to="/" className="btn btn-primary">На главную</Link>
+    <div className="nf wrap section">
+      {/* Слот под картинку или гифку.
+          Пока файл не подставлен — на его месте пунктирная рамка. */}
+      <div className="nf-media" style={slotStyle}>
+        {showImage ? (
+          <img
+            className="nf-media-img"
+            src={src}
+            alt={alt}
+            aria-hidden={alt ? undefined : 'true'}
+            onError={() => setFailed(true)}
+          />
+        ) : (
+          <div className="nf-media-empty">
+            <span className="nf-media-title">{t('notFound.mediaPlaceholder')}</span>
+            <span className="nf-media-hint">{t('notFound.mediaHint')}</span>
+          </div>
+        )}
+      </div>
+
+      <p className="eyebrow nf-eyebrow">{t('notFound.eyebrow')}</p>
+      <h1 className="nf-title">{t('notFound.title')}</h1>
+      <p className="nf-text">{t('notFound.text')}</p>
+      <Link to="/" className="btn btn-primary">{t('notFound.cta')}</Link>
     </div>
   )
 }

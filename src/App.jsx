@@ -4,6 +4,7 @@ import Nav from './components/Nav.jsx'
 import Footer from './components/Footer.jsx'
 import ContactModal from './components/ContactModal.jsx'
 import { ContactProvider } from './context/ContactContext.jsx'
+import { useLang } from './i18n/LanguageContext.jsx'
 import Home from './pages/Home.jsx'
 import About from './pages/About.jsx'
 import CaseStudy from './pages/CaseStudy.jsx'
@@ -29,9 +30,11 @@ function ScrollToTop() {
 }
 
 export default function App() {
+  const { t } = useLang()
+
   return (
     <ContactProvider>
-      <a href="#main" className="skip-link">Перейти к содержимому</a>
+      <a href="#main" className="skip-link">{t('common.skipToContent')}</a>
       <Nav />
       <main id="main">
         <ScrollToTop />

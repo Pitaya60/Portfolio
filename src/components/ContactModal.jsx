@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
-import contacts from '../data/contacts.js'
+import { getContacts } from '../data/contacts.js'
 import { useContact } from '../context/ContactContext.jsx'
+import { useLang } from '../i18n/LanguageContext.jsx'
 import './contactModal.css'
 
 /* ── Иконки ────────────────────────────────────────────────── */
@@ -58,39 +59,44 @@ function CloseIcon() {
 
 /* ── Модальное окно ────────────────────────────────────────── */
 
-const channels = [
-  {
-    key: 'telegram',
-    icon: <TelegramIcon />,
-    title: 'Написать в Telegram',
-    desc: 'Личные сообщения - здесь отвечаю быстрее всего',
-    href: contacts.telegram,
-    meta: contacts.telegramLabel,
-    tone: 'tg',
-    primary: true,
-  },
-  {
-    key: 'channel',
-    icon: <MegaphoneIcon />,
-    title: 'Мой Telegram-канал',
-    desc: 'Разбираю решения, делюсь работой',
-    href: contacts.telegramChannel,
-    meta: contacts.telegramChannelLabel,
-    tone: 'tg',
-  },
-  {
-    key: 'linkedin',
-    icon: <LinkedinIcon />,
-    title: 'Мой LinkedIn',
-    desc: 'Опыт, рекомендации и вакансии',
-    href: contacts.linkedin,
-    meta: 'linkedin.com',
-    tone: 'li',
-  },
-]
+function buildChannels(contacts, t) {
+  return [
+    {
+      key: 'telegram',
+      icon: <TelegramIcon />,
+      title: t('contactModal.channels.telegramTitle'),
+      desc: t('contactModal.channels.telegramDesc'),
+      href: contacts.telegram,
+      meta: contacts.telegramLabel,
+      tone: 'tg',
+      primary: true,
+    },
+    {
+      key: 'channel',
+      icon: <MegaphoneIcon />,
+      title: t('contactModal.channels.channelTitle'),
+      desc: t('contactModal.channels.channelDesc'),
+      href: contacts.telegramChannel,
+      meta: contacts.telegramChannelLabel,
+      tone: 'tg',
+    },
+    {
+      key: 'linkedin',
+      icon: <LinkedinIcon />,
+      title: t('contactModal.channels.linkedinTitle'),
+      desc: t('contactModal.channels.linkedinDesc'),
+      href: contacts.linkedin,
+      meta: 'linkedin.com',
+      tone: 'li',
+    },
+  ]
+}
 
 export default function ContactModal() {
   const { isOpen, closeContact } = useContact()
+  const { lang, t } = useLang()
+  const contacts = getContacts(lang)
+  const channels = buildChannels(contacts, t)
   const [copied, setCopied] = useState(false)
   const dialogRef = useRef(null)
   const firstLinkRef = useRef(null)
@@ -160,15 +166,15 @@ export default function ContactModal() {
         aria-labelledby="cm-title"
         ref={dialogRef}
       >
-        <button className="cm-close" onClick={closeContact} aria-label="Закрыть окно">
+        <button className="cm-close" onClick={closeContact} aria-label={t('contactModal.close')}>
           <CloseIcon />
         </button>
 
         <div className="cm-head">
-          <p className="eyebrow eyebrow-live">Открыта к предложениям</p>
-          <h2 id="cm-title">Давайте познакомимся</h2>
+          <p className="eyebrow eyebrow-live">{t('common.openToWork')}</p>
+          <h2 id="cm-title">{t('contactModal.title')}</h2>
           <p className="cm-sub">
-            Выберите удобный канал — {contacts.replyTime.toLowerCase()}.
+            {t('contactModal.sub')} {contacts.replyTimeInline}.
           </p>
         </div>
 
@@ -199,11 +205,11 @@ export default function ContactModal() {
         <div className="cm-foot">
           <span className="cm-icon cm-icon-mail"><MailIcon /></span>
           <span className="cm-row-text">
-            <span className="cm-row-title">Почта</span>
+            <span className="cm-row-title">{t('contactModal.mail')}</span>
             <span className="cm-row-desc">{contacts.email}</span>
           </span>
           <button className="btn btn-ghost btn-sm cm-copy" onClick={copyEmail}>
-            {copied ? 'Скопировано' : 'Копировать'}
+            {copied ? t('contactModal.copied') : t('contactModal.copy')}
           </button>
         </div>
       </div>

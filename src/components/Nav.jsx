@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import contacts from '../data/contacts.js'
+import { getContacts } from '../data/contacts.js'
 import { useContact } from '../context/ContactContext.jsx'
+import { useLang } from '../i18n/LanguageContext.jsx'
+import LangSwitch from './LangSwitch.jsx'
 import './nav.css'
 
 export default function Nav() {
@@ -9,6 +11,8 @@ export default function Nav() {
   const [scrolled, setScrolled] = useState(false)
   const { openContact } = useContact()
   const { pathname } = useLocation()
+  const { lang, t } = useLang()
+  const contacts = getContacts(lang)
 
   /* Меню закрывается при переходе на другую страницу */
   useEffect(() => { setOpen(false) }, [pathname])
@@ -45,36 +49,41 @@ export default function Nav() {
       <header className={`nav ${scrolled ? 'nav-scrolled' : ''}`}>
         <div className="nav-inner">
           <Link to="/" className="nav-logo" onClick={close}>
-          <img className="nav-logo-mark"
-          src="/case-images/avatar.jpg"
-          alt=""
-          aria-hidden="true"
-          />
+            <img
+              className="nav-logo-mark"
+              src="/case-images/avatar.jpg"
+              alt=""
+              aria-hidden="true"
+            />
             <span className="nav-logo-text">
               <span className="nav-logo-name">{contacts.name}</span>
               <span className="nav-logo-role">{contacts.role}</span>
             </span>
           </Link>
 
-          <nav className="nav-desktop" aria-label="Основная навигация">
-            <a href="/#work">Кейсы</a>
-            <Link to="/about">Обо мне</Link>
-            <a href={contacts.resume} target="_blank" rel="noreferrer">Резюме</a>
+          <nav className="nav-desktop" aria-label={t('nav.main')}>
+            <a href="/#work">{t('nav.cases')}</a>
+            <Link to="/about">{t('nav.about')}</Link>
+            <a href={contacts.resume} target="_blank" rel="noreferrer">{t('nav.resume')}</a>
+            <LangSwitch />
             <button className="btn btn-primary btn-sm" onClick={openContact}>
-              Написать
+              {t('common.write')}
             </button>
           </nav>
 
-          <button
-            className={`nav-burger ${open ? 'is-open' : ''}`}
-            aria-label={open ? 'Закрыть меню' : 'Открыть меню'}
-            aria-expanded={open}
-            aria-controls="mobile-menu"
-            onClick={() => setOpen((v) => !v)}
-          >
-            <span aria-hidden="true" />
-            <span aria-hidden="true" />
-          </button>
+          <div className="nav-mobile-controls">
+            <LangSwitch compact />
+            <button
+              className={`nav-burger ${open ? 'is-open' : ''}`}
+              aria-label={open ? t('nav.closeMenu') : t('nav.openMenu')}
+              aria-expanded={open}
+              aria-controls="mobile-menu"
+              onClick={() => setOpen((v) => !v)}
+            >
+              <span aria-hidden="true" />
+              <span aria-hidden="true" />
+            </button>
+          </div>
         </div>
       </header>
 
@@ -87,16 +96,17 @@ export default function Nav() {
       <nav
         id="mobile-menu"
         className={`nav-mobile ${open ? 'is-open' : ''}`}
-        aria-label="Мобильная навигация"
+        aria-label={t('nav.mobile')}
         aria-hidden={!open}
       >
-        <a href="/#work" onClick={close}>Кейсы</a>
-        <Link to="/about" onClick={close}>Обо мне</Link>
+        <a href="/#work" onClick={close}>{t('nav.cases')}</a>
+        <Link to="/about" onClick={close}>{t('nav.about')}</Link>
         <a href={contacts.resume} target="_blank" rel="noreferrer" onClick={close}>
-          Резюме
+          {t('nav.resume')}
         </a>
+
         <button className="btn btn-primary nav-mobile-cta" onClick={handleWrite}>
-          Написать
+          {t('common.write')}
         </button>
       </nav>
     </>
