@@ -116,18 +116,10 @@ export default function About() {
             построении многошаговых сценариев и дизайн-системах. Участвовала в разработке
             AI-продукта в сфере здравоохранения, для которого команда выиграла грант на 40 млн ₸.
           </p>
-          <div className="about-contacts">
-            <a href={`mailto:${contacts.email}`}>{contacts.email}</a>
-            <a href={`tel:${contacts.phoneHref}`}>{contacts.phone}</a>
-            <span>{contacts.location}</span>
-          </div>
           <div className="about-actions">
             <button type="button" className="btn btn-primary" onClick={openContact}>
               Написать мне
             </button>
-            <a href={contacts.resume} target="_blank" rel="noreferrer" className="btn btn-ghost">
-              Скачать резюме
-            </a>
           </div>
         </div>
       </section>
@@ -211,7 +203,7 @@ export default function About() {
         <div className="chip-grid">
           {languages.map((l) => (
             <div className="chip-card" key={l.name}>
-              {l.name} <span className="chip-level">— {l.level}</span>
+              {l.name} <span className="chip-level"> {l.level}</span>
             </div>
           ))}
         </div>
