@@ -17,8 +17,8 @@ const contacts = {
   telegramLabel: '@PastelSiren04',
   telegramChannel: 't.me/camillusworking',    // группа / канал
   telegramChannelLabel: '@camillusworking',
-  linkedin: 'www.linkedin.com/in/camilla-abdulla-685310276/?skipRedirect=true',
-  linkedinLabel: 'linkedin.com/in/camilla-abdulla-685310276',
+  linkedin: 'www.linkedin.com/in/camilla-abdulla-685310276',
+  linkedinLabel: 'Camilla Abdulla',
 
   resume: '/resume.pdf',
   replyTime: 'Отвечаю в течение рабочего дня',
