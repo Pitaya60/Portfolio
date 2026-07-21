@@ -175,18 +175,10 @@
 }
 
 .chip-icon {
-  flex: none;
-  width: 32px;
-  height: 32px;
-  border-radius: 9px;
-  background: var(--accent-soft);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-heading);
-  font-weight: 800;
-  font-size: 14px;
-  color: var(--accent);
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+  flex-shrink: 0;
 }
 
 .chip-level { color: var(--ink-soft); font-weight: 500; font-size: 14px; }

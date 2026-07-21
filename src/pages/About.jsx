@@ -91,7 +91,19 @@ const skills = [
   'A/B тесты', 'HTML5', 'CSS3',
 ]
 
-const tools = ['Figma', 'Figma Make','Adobe Photoshop' ,'Canva', 'Illustrator', 'Notion', 'Click Up', 'Jira', 'Claude','ChatGPT', 'Framer']
+const tools = [
+  { name: 'Figma', icon: 'case-images/icons/figma.png' },
+  { name: 'Figma Make', icon: 'case-images/icons/tool.png' },
+  { name: 'Adobe Photoshop', icon: 'case-images/icons/photoshop.png' },
+  { name: 'Canva', icon: 'case-images/icons/canva-icon.svg' },
+  { name: 'Illustrator', icon: 'case-images/icons/illustrator.png' },
+  { name: 'Notion', icon: 'case-images/icons/notion-icon.svg' },
+  { name: 'Click Up', icon: 'case-images/icons/clickup.jpg' },
+  { name: 'Jira', icon: 'case-images/icons/atlassian-jira-icon.svg' },
+  { name: 'Claude', icon: 'case-images/icons/claude-ai-icon(1).svg' },
+  { name: 'ChatGPT', icon: 'case-images/icons/chatgpt-icon.svg' },
+  { name: 'Framer', icon: 'case-images/icons/framer-black-icon.svg' },
+]
 
 const languages = [
   { name: 'Казахский', level: 'A2' },
@@ -187,16 +199,16 @@ export default function About() {
       </section>
 
       <section className="wrap about-section">
-        <h2>Инструменты</h2>
-        <div className="chip-grid">
-          {tools.map((t) => (
-            <div className="chip-card" key={t}>
-              <span className="chip-icon" aria-hidden="true">{t[0]}</span>
-              {t}
-            </div>
-          ))}
-        </div>
-      </section>
+  <h2>Инструменты</h2>
+  <div className="chip-grid">
+    {tools.map((t) => (
+      <div className="chip-card" key={t.name}>
+        <img className="chip-icon" src={t.icon} alt="" aria-hidden="true" />
+        {t.name}
+      </div>
+    ))}
+  </div>
+</section>
 
       <section className="wrap about-section">
         <h2>Языки</h2>
