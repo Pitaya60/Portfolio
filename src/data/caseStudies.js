@@ -178,9 +178,9 @@ const caseStudies = [
         type: 'screens',
         items: [
           { src: '/case-images/qmed/image-nof-ticket.png', label: 'Уведомления и тикеты (desktop)', size: '1400×1000', caption: 'Модуль уведомлений и обращений — desktop-версия.' },
-          { label: 'Раздел «Конкурсы» (desktop)', size: '1400×1000', caption: 'Основной флоу раздела и экраны обработки ошибок.' },
-          { label: 'Кабинет медсестры / участковой медсестры (desktop)', size: '1400×1000', caption: 'Рабочие экраны для ведения пациентов.' },
-          { label: 'Модуль СД / ХСН (mobile)', size: '900×1600', tall: true, caption: 'Карта наблюдения пациента, блок опроса и оценка по шкале Мориски-Грин — мобильная версия.' },
+          { src: '/case-images/qmed/image-com.png', label: 'Раздел «Конкурсы» (desktop)', size: '1400×1000', caption: 'Основной флоу раздела и экраны обработки ошибок.' },
+          { src: '/case-images/qmed/image-pat.png', label: 'Кабинет медсестры / участковой медсестры (desktop)', size: '1400×1000', caption: 'Рабочие экраны для ведения пациентов.' },
+          { src: '/case-images/qmed/image-sd.png', label: 'Модуль СД / ХСН (mobile)', size: '900×1600', tall: true, caption: 'Карта наблюдения пациента, блок опроса и оценка по шкале Мориски-Грин — мобильная версия.' },
           { label: 'UI-фрагменты и дизайн-система', size: '1400×1000', caption: 'Цветовая палитра, сетка и состояния компонентов.' },
         ],
       },
@@ -188,7 +188,7 @@ const caseStudies = [
         title: 'UI Kit',
         type: 'screens',
         items: [
-          { label: 'Цветовая палитра', size: '1400×1000', caption: 'Основные цвета проекта.' },
+          { src: '/case-images/qmed/image-color.png', label: 'Цветовая палитра', size: '1400×1000', caption: 'Основные цвета проекта.' },
           { label: 'Состояния компонентов', size: '1400×1000', caption: 'Различные состояния UI-компонентов.' },
         ],
       },
@@ -217,7 +217,7 @@ const caseStudies = [
       {
         type: 'screens',
         items: [
-          { label: 'Брошюра qMed AI', size: '1000×1400', caption: 'Печатный флаер с описанием пользы приложения и QR-кодами на скачивание в Google Play и App Store.' },
+          { src: '/case-images/qmed/image-bro.png', label: 'Брошюра qMed AI', size: '1000×1400', caption: 'Печатный флаер с описанием пользы приложения и QR-кодами на скачивание в Google Play и App Store.' },
           { label: 'Объявления для пациентов', size: '900×1600', tall: true, caption: 'Серия печатных объявлений в едином стиле с приложением.' },
         ],
       },
@@ -311,6 +311,7 @@ const caseStudies = [
       },
       {
         type: 'imageText',
+        imageSrc: '/case-images/prodengi/image-old.png',
         imageLabel: 'Старый интерфейс раздела',
         imageSize: '1000×1200',
         paragraphs: [
@@ -385,15 +386,17 @@ const caseStudies = [
         title: 'Финальный дизайн',
         type: 'screens',
         items: [
-          { label: 'Верхний блок страницы', size: '1400×1000', caption: 'Обновлённый визуальный стиль, декоративная иллюстрация убрана.' },
-          { label: 'Информационные карточки', size: '1400×1000', caption: '«Кредитный рейтинг», «Кредитный отчет» и «Финансовая консультация» — три самостоятельных, понятных блока.' },
-          { label: 'Блок получения услуги', size: '1400×1000', caption: 'Переработанный сценарий заказа услуги.' },
-          { label: 'Раздел FAQ', size: '1400×1000', caption: 'Единый раздел «Популярные вопросы» на основе существующего компонента продукта.' },
+          { src: '/case-images/prodengi/image-new-design.png', label: 'Верхний блок страницы', size: '1400×1000', caption: 'Обновлённый визуальный стиль, декоративная иллюстрация убрана.' },
+          { src: '/case-images/prodengi/image-block.png', label: 'Информационные карточки', size: '1400×1000', caption: '«Кредитный рейтинг», «Кредитный отчет» и «Финансовая консультация» — три самостоятельных, понятных блока.' },
+          { src: '/case-images/prodengi/image-redesign.png', label: 'Блок получения услуги', size: '1400×1000', caption: 'Переработанный сценарий заказа услуги.' },
+          { src: '/case-images/prodengi/image-faq.png', label: 'Раздел FAQ', size: '1400×1000', caption: 'Единый раздел «Популярные вопросы» на основе существующего компонента продукта.' },
         ],
       },
       {
         title: 'До / После',
         type: 'compare',
+        beforeSrc: '/case-images/prodengi/image-old-design.png',
+        afterSrc: '/case-images/prodengi/new design.png',
         changes: [
           'Убрана декоративная иллюстрация',
           'Появились информативные карточки',

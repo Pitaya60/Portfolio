@@ -531,9 +531,10 @@
 /* ── Заглушки изображений ─────────────────────────────────── */
 .case-image {
   width: 100%;
+  height: auto;
   border-radius: var(--radius);
   display: block;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .case-image-placeholder {

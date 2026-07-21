@@ -183,7 +183,7 @@ function BlockBody({ block, company }) {
             {block.paragraphs.map((p, i) => <p key={i}>{p}</p>)}
           </div>
           <figure className="cs-figure">
-            <ImageSlot label={block.imageLabel} size={block.imageSize || '900×700'} />
+            <ImageSlot src={block.imageSrc} label={block.imageLabel} size={block.imageSize || '900×700'} />
             {block.imageLabel && <figcaption>{block.imageLabel}</figcaption>}
           </figure>
         </div>
@@ -207,6 +207,7 @@ function BlockBody({ block, company }) {
           {block.items.map((s, i) => (
             <figure className="cs-figure" key={i}>
               <ImageSlot
+                src={s.src}
                 label={s.label || `Экран — ${company}`}
                 size={s.size || '1400×1000'}
                 tall={s.tall}
@@ -223,11 +224,11 @@ function BlockBody({ block, company }) {
           <div className="cs-compare-images">
             <figure className="cs-figure">
               <p className="cs-compare-label cs-compare-before">Было</p>
-              <ImageSlot label="Старый экран" size="900×1100" />
+              <ImageSlot src={block.beforeSrc} label="Старый экран" size="900×1100" />
             </figure>
             <figure className="cs-figure">
               <p className="cs-compare-label cs-compare-after">Стало</p>
-              <ImageSlot label="Новый экран" size="900×1100" />
+              <ImageSlot src={block.afterSrc} label="Новый экран" size="900×1100" />
             </figure>
           </div>
           <div className="cs-checklist">
