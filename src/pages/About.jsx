@@ -22,14 +22,6 @@ export default function About() {
             <button type="button" className="btn btn-primary" onClick={openContact}>
               {t('common.writeMe')}
             </button>
-            <a
-              className="btn btn-ghost"
-              href={contacts.resume}
-              target="_blank"
-              rel="noreferrer"
-            >
-              {t('nav.resume')}
-            </a>
           </div>
         </div>
       </section>
