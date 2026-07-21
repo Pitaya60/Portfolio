@@ -94,15 +94,15 @@ const skills = [
 const tools = [
   { name: 'Figma', icon: 'case-images/icons/figma.png' },
   { name: 'Figma Make', icon: 'case-images/icons/tool.png' },
-  { name: 'Adobe Photoshop', icon: 'case-images/icons/photoshop.png' },
+  { name: 'Framer', icon: 'case-images/icons/framer-black-icon.svg' },
   { name: 'Canva', icon: 'case-images/icons/canva-icon.svg' },
+  { name: 'Adobe Photoshop', icon: 'case-images/icons/photoshop.png' },
   { name: 'Illustrator', icon: 'case-images/icons/illustrator.png' },
   { name: 'Notion', icon: 'case-images/icons/notion-icon.svg' },
   { name: 'Click Up', icon: 'case-images/icons/clickup.jpg' },
   { name: 'Jira', icon: 'case-images/icons/atlassian-jira-icon.svg' },
   { name: 'Claude', icon: 'case-images/icons/claude-ai-icon(1).svg' },
   { name: 'ChatGPT', icon: 'case-images/icons/chatgpt-icon.svg' },
-  { name: 'Framer', icon: 'case-images/icons/framer-black-icon.svg' },
 ]
 
 const languages = [
