@@ -161,11 +161,11 @@ const caseStudies = [
   // ───────────────────────── ProDengi — Кредитный рейтинг ─────────────────────────
   {
     slug: 'prodengi-credit-rating', 
-    title: 'Редизайн раздела «Кредитной истории»',
+    title: 'Редизайн раздела «Кредитной истории» Prodengi.kz',
     company: 'ProDengi.kz',
     year: '2025',
     role: 'UX/UI Designer',
-    tags: ['FinTech', 'Web', 'Redesign'],
+    tags: ['FinTech', 'Web','Mobile','Redesign'],
     coverImage: '/case-images/prodengi/Cover.png',
     summary:
       'Обновление одного из ключевых разделов финансового сервиса ProDengi.kz: понятнее структура, меньше когнитивной нагрузки, единый FAQ.',
@@ -331,7 +331,7 @@ const caseStudies = [
   // ───────────────────────── Coursiv — Redesign продающей страницы ─────────────────────────
   {
     slug: 'coursiv-selling-page',
-    title: 'Redesign продающей страницы',
+    title: 'Редизайн Selling Page Coursiv',
     company: 'Coursiv (Zimran Team)',
     year: '2025',
     role: 'UX/UI Designer',
