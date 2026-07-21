@@ -160,8 +160,8 @@ const caseStudies = [
 
   // ───────────────────────── ProDengi — Кредитный рейтинг ─────────────────────────
   {
-    slug: 'prodengi-credit-rating',
-    title: 'Редизайн раздела «Кредитный рейтинг»',
+    slug: 'prodengi-credit-rating', 
+    title: 'Редизайн раздела «Кредитной истории»',
     company: 'ProDengi.kz',
     year: '2025',
     role: 'UX/UI Designer',
