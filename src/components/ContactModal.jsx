@@ -73,7 +73,7 @@ const channels = [
     key: 'channel',
     icon: <MegaphoneIcon />,
     title: 'Мой Telegram-канал',
-    desc: 'Разбираю решения, делюсь работой, своей жизнью ',
+    desc: 'Разбираю решения, делюсь работой',
     href: contacts.telegramChannel,
     meta: contacts.telegramChannelLabel,
     tone: 'tg',
@@ -81,7 +81,7 @@ const channels = [
   {
     key: 'linkedin',
     icon: <LinkedinIcon />,
-    title: 'LinkedIn',
+    title: 'Мой LinkedIn',
     desc: 'Опыт, рекомендации и вакансии',
     href: contacts.linkedin,
     meta: 'linkedin.com',
