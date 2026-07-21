@@ -177,7 +177,7 @@ const caseStudies = [
         title: 'Интерфейсы',
         type: 'screens',
         items: [
-          { src: '/case-images/qmed/images-nof-ticket.png', label: 'Уведомления и тикеты (desktop)', size: '1400×1000', caption: 'Модуль уведомлений и обращений — desktop-версия.' },
+          { src: '/case-images/qmed/image-nof-ticket.png', label: 'Уведомления и тикеты (desktop)', size: '1400×1000', caption: 'Модуль уведомлений и обращений — desktop-версия.' },
           { label: 'Раздел «Конкурсы» (desktop)', size: '1400×1000', caption: 'Основной флоу раздела и экраны обработки ошибок.' },
           { label: 'Кабинет медсестры / участковой медсестры (desktop)', size: '1400×1000', caption: 'Рабочие экраны для ведения пациентов.' },
           { label: 'Модуль СД / ХСН (mobile)', size: '900×1600', tall: true, caption: 'Карта наблюдения пациента, блок опроса и оценка по шкале Мориски-Грин — мобильная версия.' },
