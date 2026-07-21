@@ -6,12 +6,11 @@ const contacts = {
   phone: '+7 (707) 823-90-20',
   phoneHref: '+77078239020',
 
-  // TODO: замените на свои ссылки
-  telegram: 'https://t.me/PastelSiren04',          // личный аккаунт
+  telegram: 'https://t.me/PastelSiren04',
   telegramLabel: '@PastelSiren04',
-  telegramChannel: 't.me/camillusworking',    // группа / канал
+  telegramChannel: 'https://t.me/camillusworking',
   telegramChannelLabel: '@camillusworking',
-  linkedin: 'www.linkedin.com/in/camilla-abdulla-685310276',
+  linkedin: 'https://www.linkedin.com/in/camilla-abdulla-685310276',
   linkedinLabel: 'Camilla Abdulla',
 
   resume: '/resume.pdf',
