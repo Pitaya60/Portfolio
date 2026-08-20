@@ -174,7 +174,7 @@ export default function ContactModal() {
           <p className="eyebrow eyebrow-live">{t('common.openToWork')}</p>
           <h2 id="cm-title">{t('contactModal.title')}</h2>
           <p className="cm-sub">
-            {t('contactModal.sub')} {contacts.replyTimeInline}.
+            {t('contactModal.sub')} {contacts.replyTime}.
           </p>
         </div>
 

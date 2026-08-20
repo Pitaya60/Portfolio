@@ -51,7 +51,7 @@ export default function Nav() {
           <Link to="/" className="nav-logo" onClick={close}>
             <img
               className="nav-logo-mark"
-              src="/case-images/avatar.jpg"
+              src="/case-images/avatar.webp"
               alt=""
               aria-hidden="true"
             />

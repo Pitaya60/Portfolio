@@ -52,7 +52,7 @@ export default function Home() {
           <div>
             <h2>{t('home.ctaTitle')}</h2>
             <p>
-              {t('home.ctaText')} {contacts.replyTimeInline}.
+              {t('home.ctaText')} {contacts.replyTime}.
             </p>
           </div>
           <button className="btn btn-invert" onClick={openContact}>
