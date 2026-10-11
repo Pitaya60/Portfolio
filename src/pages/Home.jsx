@@ -1,6 +1,8 @@
 import { getCaseStudies } from '../data/caseStudies.js'
+import { getInProgress } from '../data/inProgress.js'
 import { getContacts } from '../data/contacts.js'
 import CaseCard from '../components/CaseCard.jsx'
+import ProjectCard from '../components/ProjectCard.jsx'
 import { useContact } from '../context/ContactContext.jsx'
 import { useLang } from '../i18n/LanguageContext.jsx'
 import './home.css'
@@ -10,6 +12,7 @@ export default function Home() {
   const { lang, t } = useLang()
   const contacts = getContacts(lang)
   const caseStudies = getCaseStudies(lang)
+  const inProgress = getInProgress(lang)
 
   return (
     <>
@@ -46,13 +49,31 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ── Проекты в разработке ─────────────────────── */}
+      {inProgress.length > 0 && (
+        <section id="in-progress" className="wrap section-tight in-progress">
+          <div className="section-head">
+            <div>
+              <h2>{t('home.inProgressTitle')}</h2>
+            </div>
+            <p>{t('home.inProgressLead')}</p>
+          </div>
+
+          <div className="progress-grid">
+            {inProgress.map((p) => (
+              <ProjectCard key={p.id} item={p} />
+            ))}
+          </div>
+        </section>
+      )}
+
       {/* ── Призыв к действию ────────────────────────── */}
       <section className="wrap section-tight">
         <div className="home-cta">
           <div>
             <h2>{t('home.ctaTitle')}</h2>
             <p>
-              {t('home.ctaText')} {contacts.replyTime}.
+              {t('home.ctaText')} {contacts.replyTimeInline}.
             </p>
           </div>
           <button className="btn btn-invert" onClick={openContact}>

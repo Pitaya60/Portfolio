@@ -1,0 +1,144 @@
+/* ── Карточка проекта «в разработке» ───────────────────────── */
+
+.project-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--paper-raised);
+  border: 1px dashed var(--line-strong);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.project-card-link:hover {
+  border-style: solid;
+  border-color: var(--line-strong);
+  box-shadow: var(--shadow);
+  transform: translateY(-3px);
+}
+
+/* Обложка */
+.project-card-media { position: relative; background: var(--paper-sunken); }
+
+.project-card-cover {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.project-card-cover-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--s-5);
+  color: var(--ink-faint);
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(18px, 2.4vw, 26px);
+  letter-spacing: -0.02em;
+  text-align: center;
+  background: var(--paper-sunken);
+}
+
+.project-card-status {
+  position: absolute;
+  top: var(--s-4);
+  left: var(--s-4);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink);
+  background: var(--lime);
+  padding: 6px 12px;
+  border-radius: var(--radius-pill);
+}
+
+.project-card-status::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--ink);
+  animation: project-pulse 1.8s ease-in-out infinite;
+}
+
+@keyframes project-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+/* Текст */
+.project-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+  padding: var(--s-5);
+  flex: 1;
+}
+
+.project-card-meta {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.project-card-title {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: clamp(19px, 2.2vw, 24px);
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  margin: 0;
+  text-wrap: balance;
+}
+
+.project-card-summary {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+
+/* Прогресс */
+.project-card-progress { margin-top: var(--s-2); }
+
+.project-card-progress-head {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: var(--s-2);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.project-card-bar {
+  height: 6px;
+  border-radius: var(--radius-pill);
+  background: var(--paper-sunken);
+  overflow: hidden;
+}
+
+.project-card-bar span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--accent);
+}
+
+.project-card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+  margin-top: auto;
+  padding-top: var(--s-2);
+}

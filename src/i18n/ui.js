@@ -5,7 +5,7 @@
 const ui = {
   ru: {
     meta: {
-      title: 'Абдулла Камилла — UX/UI Designer',
+      title: 'Абдулла Камилла — Product Designer',
       description:
         'UX/UI-портфолио: кейсы в MedTech, FinTech и EdTech — исследования, процесс, решения и результат.',
     },
@@ -28,13 +28,16 @@ const ui = {
       closeMenu: 'Закрыть меню',
     },
     home: {
-      heroTitleLine1: 'UX/UI-дизайнер продуктов',
-      heroTitleLine2: 'в MedTech и FinTech',
-      heroLead: 'Проектирую многоролевые системы — от исследования до дизайн-системы. Инженерное образование: макеты доходят до прода без переделок.',
+      heroTitleLine1: 'UX-UI дизайнер,',
+      heroTitleLine2: 'создаю цифровые продукты',
+      heroLead: 'Люблю решать сложные кейсы.',
       heroCta: 'Смотреть кейсы',
       casesTitle: 'Кейсы',
+      inProgressTitle: 'Проекты в разработке',
+      inProgressLead: 'Над чем я работаю прямо сейчас — кейсы появятся после запуска.',
+      progress: 'Готовность',
       ctaTitle: 'Ищете дизайнера в команду?',
-      ctaText: 'Расскажите о продукте и задаче — вместе найдём решение.',
+      ctaText: 'Расскажите о продукте и задаче — решим вместе,',
     },
     card: {
       open: 'Открыть кейс',
@@ -99,7 +102,7 @@ const ui = {
     },
     contactModal: {
       title: 'Давайте познакомимся',
-      sub: 'Выберите удобный канал связи.',
+      sub: 'Выберите удобный канал —',
       close: 'Закрыть окно',
       mail: 'Почта',
       copy: 'Копировать',
@@ -136,7 +139,7 @@ const ui = {
 
   en: {
     meta: {
-      title: 'Camilla Abdulla — UX/UI Designer',
+      title: 'Camilla Abdulla — Product Designer',
       description:
         'UX/UI portfolio: case studies in MedTech, FinTech and EdTech — research, process, decisions and outcomes.',
     },
@@ -159,13 +162,16 @@ const ui = {
       closeMenu: 'Close menu',
     },
     home: {
-      heroTitleLine1: 'UX/UI designer',
-      heroTitleLine2: 'for MedTech & FinTech products',
-      heroLead: 'I design multi-role systems — from research to design systems. Engineering background: my mockups ship without rework.',
+      heroTitleLine1: 'UX-UI designer,',
+      heroTitleLine2: 'building digital products',
+      heroLead: 'I enjoy solving complex product problems.',
       heroCta: 'View case studies',
       casesTitle: 'Case studies',
+      inProgressTitle: 'Projects in progress',
+      inProgressLead: 'What I am working on right now — case studies will follow after launch.',
+      progress: 'Progress',
       ctaTitle: 'Looking for a designer for your team?',
-      ctaText: 'Tell me about the product and the challenge — let\u2019s find a solution together.',
+      ctaText: 'Tell me about the product and the challenge — we will solve it together,',
     },
     card: {
       open: 'Open case study',
@@ -230,7 +236,7 @@ const ui = {
     },
     contactModal: {
       title: 'Let us get acquainted',
-      sub: 'Pick the channel that works for you.',
+      sub: 'Pick the channel you prefer —',
       close: 'Close dialog',
       mail: 'Email',
       copy: 'Copy',
