@@ -1,0 +1,178 @@
+/* ── Мини-игра «Уютная комната» ────────────────────────────── */
+
+.room {
+  width: 100%;
+  max-width: 920px;
+}
+
+.room-stage {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  border: 4px solid #b98cf0; /* сиреневая рамка, как в референсе */
+  border-radius: var(--radius-lg);
+  background: #2a1f3a;
+  overflow: hidden;
+  cursor: pointer;
+  outline: none;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+  touch-action: manipulation;
+}
+
+.room-stage.is-focused {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 5px rgba(86, 83, 254, 0.2);
+}
+
+.room-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  image-rendering: crisp-edges;
+  image-rendering: pixelated;
+}
+
+/* Плашка «нажмите, чтобы играть» */
+.room-start {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(19, 18, 42, 0.38);
+}
+
+.room-start span {
+  background: #fff;
+  color: var(--dark);
+  font-weight: 700;
+  font-size: 14px;
+  padding: 12px 22px;
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow);
+}
+
+/* Реплика в стиле диалоговых окон Stardew */
+.room-toast {
+  position: absolute;
+  top: 7%;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 80%;
+  background: #fdebc0;
+  color: #5a3a1a;
+  border: 3px solid #a8703e;
+  box-shadow: 0 0 0 3px #e0a868, 0 6px 0 rgba(0, 0, 0, 0.18);
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-weight: 700;
+  font-size: clamp(12px, 1.7vw, 15px);
+  text-align: center;
+  pointer-events: none;
+  animation: room-pop 0.25s ease-out;
+}
+
+@keyframes room-pop {
+  from { opacity: 0; transform: translateX(-50%) translateY(6px) scale(0.96); }
+  to { opacity: 1; transform: translateX(-50%) translateY(0) scale(1); }
+}
+
+/* Подсказка о действии */
+.room-hint {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  background: var(--dark);
+  color: #fff;
+  border: 0;
+  border-radius: var(--radius-pill);
+  padding: 9px 16px;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 13px;
+  white-space: nowrap;
+  box-shadow: var(--shadow-lg);
+  cursor: pointer;
+}
+
+.room-hint kbd {
+  background: var(--lime);
+  color: var(--dark);
+  border-radius: 6px;
+  padding: 2px 8px;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+/* ── Подписи и сенсорное управление ───────────────────────── */
+.room-ui {
+  margin-top: var(--s-4);
+}
+
+.room-keys {
+  margin: 0;
+  font-size: 14px;
+  color: var(--ink-soft);
+}
+
+.room-pad {
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-5);
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.room-pad-dirs {
+  display: grid;
+  grid-template-columns: repeat(3, 56px);
+  grid-template-rows: repeat(2, 56px);
+  gap: 6px;
+}
+
+.room-pad-btn {
+  border: 1px solid var(--line-strong);
+  background: var(--paper-raised);
+  color: var(--ink);
+  border-radius: var(--radius-sm);
+  font-size: 18px;
+  touch-action: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.room-pad-btn:active { background: var(--accent-soft); border-color: var(--accent); }
+
+.pad-up { grid-column: 2; grid-row: 1; }
+.pad-left { grid-column: 1; grid-row: 2; }
+.pad-down { grid-column: 2; grid-row: 2; }
+.pad-right { grid-column: 3; grid-row: 2; }
+
+.room-pad-act {
+  min-width: 120px;
+  min-height: 56px;
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: var(--lime);
+  color: var(--dark);
+  font-family: inherit;
+  font-weight: 800;
+  font-size: 15px;
+  padding: 0 24px;
+  touch-action: manipulation;
+}
+
+.room-pad-act:active { background: var(--lime-dark); }
+
+@media (pointer: coarse) {
+  .room-keys { display: none; }
+  .room-pad { display: flex; }
+}
+
+@media (max-width: 560px) {
+  .room-stage { border-width: 3px; border-radius: var(--radius); }
+}

@@ -90,6 +90,28 @@ npm run build    # сборка в dist/
 `slug` и в одном и том же порядке. Если строки в `ui.js` для английского
 не окажется — подставится русская, сайт не сломается.
 
+## Страница «Веселье» (`/fun`)
+
+Блог с фильтрами (Все / Хакатоны / Работа / Код / Дизайн-концепты) и
+мини-игрой «Уютная комната». Пока раздел помечен как «В разработке».
+
+| Что | Где |
+|---|---|
+| Записи блога (RU и EN) | `src/data/funPosts.js` |
+| Тексты страницы и игры | `src/i18n/ui.js` → `fun`, `room` |
+| Страница | `src/pages/Fun.jsx`, `fun.css` |
+| Мини-игра | `src/components/CozyRoom.jsx` |
+| Логика игры (движение, кот, сон) | `src/game/roomEngine.js` |
+| Графика комнаты (рисуется кодом) | `src/game/roomArt.js`, `roomRender.js` |
+
+Как добавить запись: скопируйте объект в оба массива (`ru` и `en`) с одним `id`,
+укажите `category` (`hackathon` | `work` | `code` | `design`), обложку положите в
+`public/fun/` и впишите путь в `image`. Уберите `soon: true`, когда запись готова.
+Когда раздел будет готов, уберите бейдж и строку `wipNote` в `Fun.jsx` / `ui.js`.
+
+Управление в игре: WASD или стрелки — ходить, E или Пробел — действие
+(погладить кота, лечь спать, присесть). На телефоне — экранные кнопки.
+
 ## Структура
 
 ```
@@ -97,7 +119,8 @@ src/
   components/    Nav, Footer, CaseCard, ContactModal, ImageSlot
   context/       ContactContext — состояние модального окна
   data/          contacts.js (контакты), caseStudies.js (кейсы)
-  pages/         Home, About, CaseStudy, CustomCaseStudy, NotFound
+  pages/         Home, About, Fun, CaseStudy, CustomCaseStudy, NotFound
+  game/          Мини-игра: roomEngine (логика), roomArt и roomRender (графика)
   styles/        global.css — токены: цвета, отступы, шрифты, кнопки
 ```
 

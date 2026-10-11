@@ -26,6 +26,7 @@ export default function Footer() {
         <nav className="footer-nav" aria-label={t('footer.nav')}>
           <p className="footer-col-title">{t('footer.sections')}</p>
           <a href="/#work">{t('nav.cases')}</a>
+          <Link to="/fun">{t('nav.fun')}</Link>
           <Link to="/about">{t('nav.about')}</Link>
           <a href={contacts.resume} target="_blank" rel="noreferrer">{t('nav.resume')}</a>
         </nav>

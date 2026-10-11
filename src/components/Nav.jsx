@@ -63,6 +63,7 @@ export default function Nav() {
 
           <nav className="nav-desktop" aria-label={t('nav.main')}>
             <a href="/#work">{t('nav.cases')}</a>
+            <Link to="/fun">{t('nav.fun')}</Link>
             <Link to="/about">{t('nav.about')}</Link>
             <a href={contacts.resume} target="_blank" rel="noreferrer">{t('nav.resume')}</a>
             <LangSwitch />
@@ -100,6 +101,7 @@ export default function Nav() {
         aria-hidden={!open}
       >
         <a href="/#work" onClick={close}>{t('nav.cases')}</a>
+        <Link to="/fun" onClick={close}>{t('nav.fun')}</Link>
         <Link to="/about" onClick={close}>{t('nav.about')}</Link>
         <a href={contacts.resume} target="_blank" rel="noreferrer" onClick={close}>
           {t('nav.resume')}

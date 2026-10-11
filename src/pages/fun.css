@@ -1,0 +1,191 @@
+/* ── Страница «Веселье» ────────────────────────────────────── */
+
+.fun-hero {
+  padding-top: clamp(40px, 6vw, 72px);
+  padding-bottom: var(--s-6);
+  max-width: var(--container);
+}
+
+/* Бейдж «в разработке» — как на карточках проектов */
+.fun-wip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  margin: 0 0 var(--s-5);
+  background: var(--lime);
+  color: var(--dark);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 7px 14px;
+  border-radius: var(--radius-pill);
+}
+
+.fun-wip::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--dark);
+  animation: fun-pulse 1.8s ease-in-out infinite;
+}
+
+@keyframes fun-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.fun-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(34px, 6vw, 64px);
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  margin: 0 0 var(--s-4);
+}
+
+.fun-lead {
+  margin: 0;
+  max-width: 56ch;
+  font-size: clamp(16px, 1.6vw, 18px);
+  line-height: 1.65;
+  color: var(--ink-soft);
+}
+
+/* ── Мини-игра ─────────────────────────────────────────────── */
+.fun-room-section { padding-bottom: var(--section-y); }
+
+.fun-room-head { margin-bottom: var(--s-5); }
+
+.fun-room-head h2 {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: clamp(22px, 2.8vw, 30px);
+  letter-spacing: -0.02em;
+  margin: 0 0 var(--s-2);
+}
+
+.fun-room-head p {
+  margin: 0;
+  max-width: 56ch;
+  font-size: 15px;
+  color: var(--ink-soft);
+}
+
+/* ── Блог: фильтры ─────────────────────────────────────────── */
+.fun-blog {
+  border-top: 1px solid var(--line);
+  padding-top: var(--s-7);
+}
+
+.fun-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2) var(--s-3);
+  margin-bottom: var(--s-4);
+}
+
+.fun-tab {
+  border: 0;
+  background: transparent;
+  color: var(--ink-faint);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 15px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: color 0.15s ease, background 0.15s ease;
+}
+
+.fun-tab:hover { color: var(--ink); }
+
+.fun-tab.is-active {
+  background: var(--accent);
+  color: #fff;
+}
+
+.fun-note {
+  margin: 0 0 var(--s-6);
+  font-size: 13px;
+  color: var(--ink-faint);
+}
+
+/* ── Блог: «кирпичная» сетка ──────────────────────────────── */
+.fun-grid {
+  column-count: 4;
+  column-gap: var(--s-5);
+}
+
+.fun-card {
+  display: block;
+  break-inside: avoid;
+  margin: 0 0 var(--s-6);
+}
+
+.fun-card-media {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.fun-card-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.fun-card-soon {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(19, 18, 42, 0.38);
+}
+
+.fun-card-title {
+  margin: var(--s-3) 0 0;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+}
+
+.fun-card-sub {
+  margin: 2px 0 0;
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--ink-faint);
+}
+
+.fun-card-link .fun-card-media { transition: transform 0.2s ease; }
+.fun-card-link:hover .fun-card-media { transform: translateY(-3px); }
+
+.fun-empty {
+  margin: var(--s-7) 0;
+  color: var(--ink-soft);
+}
+
+/* ── Адаптив ──────────────────────────────────────────────── */
+@media (max-width: 1000px) {
+  .fun-grid { column-count: 3; }
+}
+
+@media (max-width: 720px) {
+  .fun-grid { column-count: 2; column-gap: var(--s-4); }
+  .fun-card { margin-bottom: var(--s-5); }
+  .fun-tab { font-size: 14px; padding: 8px 10px; }
+}
+
+@media (max-width: 420px) {
+  .fun-grid { column-count: 1; }
+}
