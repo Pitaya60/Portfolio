@@ -1,5 +1,6 @@
-import { W, H } from './roomEngine.js'
+import { W, H, SCENES, fadeAmount } from './roomEngine.js'
 import { PLACE } from './roomArt.js'
+import { TV_SCREEN } from './scenes.js'
 
 const HAIR = '#2b1d22'
 const HAIR_HI = '#4a3038'
@@ -205,6 +206,7 @@ function drawCat(ctx, c, S) {
 /* ── Эффекты: сердечки и «Z» ──────────────────────────────── */
 const HEART = ['.#.#.', '#####', '.###.', '..#..']
 const ZZ = ['#####', '...#.', '..#..', '.#...', '#####']
+const PUFF = ['.#.', '###', '.#.']
 
 function drawGlyph(ctx, rows, x, y, color) {
   ctx.fillStyle = color
@@ -220,14 +222,46 @@ function drawFx(ctx, fx) {
     const left = 1 - f.age / f.life
     ctx.globalAlpha = Math.max(0, Math.min(1, left * 1.6))
     if (f.type === 'heart') drawGlyph(ctx, HEART, f.x - 2, f.y, '#ff5f8d')
+    else if (f.type === 'steam') drawGlyph(ctx, PUFF, f.x - 1, f.y, '#ffffff')
+    else if (f.type === 'drop') drawGlyph(ctx, ['#', '#'], f.x, f.y, '#4aa8ff')
     else drawGlyph(ctx, ZZ, f.x, f.y, '#fdf6ff')
   }
   ctx.globalAlpha = 1
 }
 
+/* Экран телевизора: бегущие цветные полосы */
+function drawTv(ctx, x, y, t) {
+  const sx = x + TV_SCREEN.x
+  const sy = y + TV_SCREEN.y
+  ctx.fillStyle = '#7ad0f0'
+  ctx.fillRect(sx, sy, TV_SCREEN.w, TV_SCREEN.h)
+  const cols = ['#ff8fb1', '#ffd36a', '#9be08a', '#b5a0ff']
+  const k = Math.floor(t * 1.5)
+  for (let i = 0; i < 5; i++) {
+    const h = 6 + Math.round(Math.abs(Math.sin(t * 2 + i)) * 10)
+    ctx.fillStyle = cols[(i + k) % 4]
+    ctx.fillRect(sx + 2 + i * 8, sy + TV_SCREEN.h - h, 6, h)
+  }
+  ctx.fillStyle = 'rgba(255,255,255,0.18)'
+  ctx.fillRect(sx, sy, TV_SCREEN.w, 3)
+}
+
+/* Две бабочки в саду */
+function drawButterflies(ctx, t) {
+  for (const [ph, cx, cy, c] of [[0, 160, 96, '#ff9ac8'], [2.1, 220, 88, '#ffd36a']]) {
+    const x = Math.round(cx + Math.sin(t * 0.7 + ph) * 44)
+    const y = Math.round(cy + Math.cos(t * 1.1 + ph) * 12)
+    const up = Math.floor(t * 8 + ph) % 2
+    ctx.fillStyle = c
+    ctx.fillRect(x - 2, y - (up ? 2 : 0), 2, 2)
+    ctx.fillRect(x + 1, y - (up ? 2 : 0), 2, 2)
+    ctx.fillStyle = '#3a2a3a'
+    ctx.fillRect(x, y, 1, 2)
+  }
+}
+
 /* ── Кадр ─────────────────────────────────────────────────── */
-export function drawFrame(ctx, art, S) {
-  ctx.clearRect(0, 0, W, H)
+function drawBedroom(ctx, art, S) {
   ctx.drawImage(art.bg, 0, 0)
 
   const put = (name) => ctx.drawImage(art[name], PLACE[name][0], PLACE[name][1])
@@ -258,11 +292,44 @@ export function drawFrame(ctx, art, S) {
   }
 
   items.sort((a, b) => a.b - b.b).forEach((i) => i.draw())
+}
+
+/* Гостиная, кухня и сад: фон + предметы из scenes.js, отсортированные по «ногам» */
+function drawHouse(ctx, art, S) {
+  ctx.drawImage(art.bgs[S.scene], 0, 0)
+
+  const sc = SCENES[S.scene]
+  const sprites = { ...art, ...art.s }
+  const items = sc.props.map((pr) => ({
+    b: pr.b,
+    draw: () => {
+      ctx.drawImage(sprites[pr.img], pr.x, pr.y)
+      if (pr.tv && S.tv) drawTv(ctx, pr.x, pr.y, S.t)
+    },
+  }))
+  items.push({ b: S.p.y, draw: () => drawPlayer(ctx, S.p, S.mode === 'sit') })
+
+  items.sort((a, b) => a.b - b.b).forEach((i) => i.draw())
+
+  if (S.scene === 'garden') drawButterflies(ctx, S.t)
+}
+
+export function drawFrame(ctx, art, S) {
+  ctx.clearRect(0, 0, W, H)
+
+  if (S.scene === 'bedroom') drawBedroom(ctx, art, S)
+  else drawHouse(ctx, art, S)
 
   drawFx(ctx, S.fx)
 
   if (S.dark > 0.001) {
     ctx.fillStyle = `rgba(14,12,48,${S.dark})`
+    ctx.fillRect(0, 0, W, H)
+  }
+
+  const fade = fadeAmount(S)
+  if (fade > 0.001) {
+    ctx.fillStyle = `rgba(14,12,48,${fade})`
     ctx.fillRect(0, 0, W, H)
   }
 }

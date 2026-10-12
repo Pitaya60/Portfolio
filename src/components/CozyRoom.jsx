@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { useLang } from '../i18n/LanguageContext.jsx'
 import { buildArt } from '../game/roomArt.js'
+import { buildSceneArt } from '../game/sceneArt.js'
 import { createState, update, doAction, getHint, W, H } from '../game/roomEngine.js'
 import { drawFrame } from '../game/roomRender.js'
 import './cozyRoom.css'
@@ -47,7 +48,7 @@ export default function CozyRoom() {
     const ctx = canvas.getContext('2d')
     ctx.imageSmoothingEnabled = false
 
-    const art = buildArt()
+    const art = { ...buildArt(), ...buildSceneArt() }
     const S = createState()
     actRef.current = () => doAction(S)
 

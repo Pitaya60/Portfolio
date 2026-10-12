@@ -39,6 +39,7 @@
   align-items: center;
   justify-content: center;
   background: rgba(19, 18, 42, 0.38);
+  pointer-events: none; /* клик попадает в сцену, а плашка не пропадает из-под курсора и не сбивает фокус */
 }
 
 .room-start span {
