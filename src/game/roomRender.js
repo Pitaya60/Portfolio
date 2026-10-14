@@ -14,11 +14,11 @@ const SKIRT = '#3c3447'
 const BOOT = '#5c4638'
 const PINK = '#d94a78'
 
-const CAT = '#e9a45e'
-const CAT_DARK = '#c47a3a'
-const CAT_LIGHT = '#f8d9a8'
-const CAT_EYE = '#2a1e1a'
-const CAT_NOSE = '#e58b95'
+const CAT = '#050301'
+const CAT_DARK = '#080808'
+const CAT_LIGHT = '#1d1d1d'
+const CAT_EYE = '#ffee05'
+const CAT_NOSE = '#1f1d1d'
 
 /* Рисует прямоугольник относительно спрайта; при flip зеркалит по X */
 function painter(ctx, ox, oy, width, flip) {
