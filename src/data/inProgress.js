@@ -18,7 +18,7 @@
 const ru = [
   {
     id: 'project-1',
-    title: 'Название нового проекта',
+    title: 'Alma TV',
     summary: 'Коротко о проекте: для кого он, какую задачу решает и что вы в нём делаете.',
     tags: ['UX/UI', 'Web'],
     status: 'В разработке',
@@ -29,7 +29,7 @@ const ru = [
   },
   {
     id: 'project-2',
-    title: 'Название второго проекта',
+    title: 'Re:Kassa',
     summary: 'Коротко о проекте: для кого он, какую задачу решает и что вы в нём делаете.',
     tags: ['UX/UI', 'Mobile'],
     status: 'В разработке',
@@ -43,7 +43,7 @@ const ru = [
 const en = [
   {
     id: 'project-1',
-    title: 'New project title',
+    title: 'Alma TV',
     summary: 'A short note on the project: who it is for, what problem it solves and what you do in it.',
     tags: ['UX/UI', 'Web'],
     status: 'In progress',
@@ -54,7 +54,7 @@ const en = [
   },
   {
     id: 'project-2',
-    title: 'Second project title',
+    title: 'Re:Kassa',
     summary: 'A short note on the project: who it is for, what problem it solves and what you do in it.',
     tags: ['UX/UI', 'Mobile'],
     status: 'In progress',
