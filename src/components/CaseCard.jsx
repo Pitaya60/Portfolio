@@ -14,15 +14,17 @@ function badgeClass(tag = '') {
   return badgeByTag[tag.toLowerCase()] || 'badge-purple'
 }
 
-export default function CaseCard({ item, index = 1, total = 1 }) {
+export default function CaseCard({ item, index = 1, total = 1, compact = false }) {
   const { t } = useLang()
   const featured = index === 1
   const primaryTag = item.tags?.[0]
 
+  const showFeatured = featured && !compact
+
   return (
     <Link
       to={`/case/${item.slug}`}
-      className={`case-card ${featured ? 'case-card-featured' : ''}`}
+      className={`case-card ${showFeatured ? 'case-card-featured' : ''}`}
       aria-label={`${t('card.open')}: ${item.title}`}
     >
       <div className="case-card-media">
@@ -33,8 +35,12 @@ export default function CaseCard({ item, index = 1, total = 1 }) {
             <span>{item.company}</span>
           </div>
         )}
-        {primaryTag && (
-          <span className={`case-card-badge ${badgeClass(primaryTag)}`}>{primaryTag}</span>
+        {item.status ? (
+          <span className="case-card-badge badge-lime">{item.status}</span>
+        ) : (
+          primaryTag && (
+            <span className={`case-card-badge ${badgeClass(primaryTag)}`}>{primaryTag}</span>
+          )
         )}
       </div>
 

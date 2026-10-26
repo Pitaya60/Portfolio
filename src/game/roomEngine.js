@@ -1,11 +1,8 @@
 /* Логика мини-игры «Уютная комната». Здесь нет ни DOM, ни canvas —
    только состояние и правила, поэтому её легко тестировать отдельно. */
 
-import { SCENES as HOUSE } from './scenes.js'
-
 export const W = 320
 export const H = 180
-export const FADE = 0.35 // половина перехода между помещениями, сек
 
 /* Что нельзя пересекать: прямоугольники «следа» мебели на полу */
 export const BLOCKS = [
@@ -20,20 +17,6 @@ export const BLOCKS = [
   { id: 'plant2', x: 262, y: 166, w: 12, h: 10 },
 ]
 
-/* Все помещения. Спальня — особая (кровать, кресло, кот), остальные из scenes.js */
-export const SCENES = {
-  bedroom: {
-    minY: 72,
-    blocks: BLOCKS,
-    props: [],
-    spots: [],
-    exits: [
-      { zone: { x: 264, y: 72, w: 46, h: 30 }, hint: 'down', to: 'living', at: { x: 282, y: 94 } },
-    ],
-  },
-  ...HOUSE,
-}
-
 /* Места, откуда можно взаимодействовать (по ногам героини) */
 const BED_ZONE = { x: 148, y: 111, w: 64, h: 16 }
 const CHAIR_ZONE = { x: 230, y: 147, w: 34, h: 16 }
@@ -41,7 +24,6 @@ const CHAIR_ZONE = { x: 230, y: 147, w: 34, h: 16 }
 export const BED_WAKE = { x: 180, y: 116 }
 export const CHAIR_SEAT = { x: 247, y: 141 }
 const CHAIR_STAND = { x: 247, y: 151 }
-const CHAIR_SEAT_DEF = { x: 247, y: 141, dir: 'down', stand: CHAIR_STAND }
 
 const TREE_TOP = { x: 28, y: 41 } // где кот спит на когтеточке
 const TREE_FRONT = { x: 30, y: 108 } // куда он спрыгивает
@@ -68,10 +50,6 @@ export function createState(rng = Math.random) {
   return {
     rng,
     t: 0,
-    scene: 'bedroom', // bedroom | living | kitchen | garden
-    tr: null, // переход между помещениями
-    seat: null,
-    tv: false,
     mode: 'walk', // walk | sleep | sit
     sleepT: 0,
     dark: 0, // затемнение экрана (0..0.6)
@@ -95,85 +73,39 @@ export function createState(rng = Math.random) {
 }
 
 /* Нога героини — маленький прямоугольник 8×3 */
-export function blocked(x, y, scene = 'bedroom') {
-  const sc = SCENES[scene]
+export function blocked(x, y) {
   const l = x - 4
   const r = x + 4
   const t = y - 3
   const b = y
-  if (l < 6 || r > W - 6 || b > H || b < sc.minY) return true
-  return sc.blocks.some((k) => r > k.x && l < k.x + k.w && b > k.y && t < k.y + k.h)
+  if (l < 6 || r > W - 6 || b > H || b < 72) return true
+  return BLOCKS.some((k) => r > k.x && l < k.x + k.w && b > k.y && t < k.y + k.h)
 }
 
 function petPoint(cat) {
   return cat.state === 'tree' ? TREE_PET : cat
 }
 
-/* Что сейчас можно сделать: подсказка плюс объект действия */
-function findTarget(S) {
-  if (S.tr) return null
-  if (S.mode === 'sleep') return S.sleepT > 1 ? { hint: 'wake' } : null
-  if (S.mode === 'sit') return { hint: 'stand' }
-  if (S.scene === 'bedroom') {
-    if (dist(S.p, petPoint(S.cat)) < PET_RADIUS) return { hint: 'cat' }
-    if (inRect(S.p, BED_ZONE)) return { hint: 'bed' }
-    if (inRect(S.p, CHAIR_ZONE)) return { hint: 'chair' }
-  }
-  const sc = SCENES[S.scene]
-  const spot = sc.spots.find((k) => inRect(S.p, k.zone))
-  if (spot) return { hint: spot.hint, spot }
-  const exit = sc.exits.find((k) => inRect(S.p, k.zone))
-  return exit ? { hint: exit.hint, exit } : null
-}
-
 export function getHint(S) {
-  return findTarget(S)?.hint ?? null
-}
-
-function sit(S, seat, event) {
-  S.mode = 'sit'
-  S.seat = seat
-  S.p.x = seat.x
-  S.p.y = seat.y
-  S.p.dir = seat.dir
-  S.p.moving = false
-  if (event) S.events.push(event)
-}
-
-function standUp(S) {
-  const seat = S.seat
-  S.mode = 'walk'
-  if (seat) {
-    S.p.x = seat.stand.x
-    S.p.y = seat.stand.y
-  }
-  S.p.dir = 'down'
-  S.seat = null
-  S.tv = false
-}
-
-function useSpot(S, k) {
-  if (k.seat) {
-    sit(S, k.seat, k.event)
-    S.tv = !!k.tv
-    return
-  }
-  if (k.event) S.events.push(k.event)
-  if (k.fx) {
-    const spread = k.spread ?? 12
-    for (let i = 0; i < 6; i++) spawn(S, k.fx, k.at.x + (S.rng() - 0.5) * spread, k.at.y + S.rng() * 4)
-  }
+  if (S.mode === 'sleep') return S.sleepT > 1 ? 'wake' : null
+  if (S.mode === 'sit') return 'stand'
+  if (dist(S.p, petPoint(S.cat)) < PET_RADIUS) return 'cat'
+  if (inRect(S.p, BED_ZONE)) return 'bed'
+  if (inRect(S.p, CHAIR_ZONE)) return 'chair'
+  return null
 }
 
 export function doAction(S) {
-  const target = findTarget(S)
-  if (!target) return
-  const { hint, spot, exit } = target
+  const hint = getHint(S)
+  if (!hint) return
 
   if (hint === 'wake') {
     wake(S)
   } else if (hint === 'stand') {
-    standUp(S)
+    S.mode = 'walk'
+    S.p.x = CHAIR_STAND.x
+    S.p.y = CHAIR_STAND.y
+    S.p.dir = 'down'
   } else if (hint === 'bed') {
     S.mode = 'sleep'
     S.sleepT = 0
@@ -181,8 +113,13 @@ export function doAction(S) {
     S.p.dir = 'down'
     S.p.moving = false
     S.events.push('sleep')
-  } else if (hint === 'chair' && !spot) {
-    sit(S, CHAIR_SEAT_DEF, 'sit')
+  } else if (hint === 'chair') {
+    S.mode = 'sit'
+    S.p.x = CHAIR_SEAT.x
+    S.p.y = CHAIR_SEAT.y
+    S.p.dir = 'down'
+    S.p.moving = false
+    S.events.push('sit')
   } else if (hint === 'cat') {
     const c = S.cat
     c.petT = 2.4
@@ -192,20 +129,7 @@ export function doAction(S) {
     if (Math.abs(S.p.y - to.y) > Math.abs(dx)) S.p.dir = to.y < S.p.y ? 'up' : 'down'
     else S.p.dir = dx < 0 ? 'left' : 'right'
     S.events.push('purr')
-  } else if (spot) {
-    useSpot(S, spot)
-  } else if (exit) {
-    S.tr = { t: 0, exit, switched: false }
-    S.p.moving = false
-    S.p.anim = 0
   }
-}
-
-/* 0..1 — насколько экран затемнён во время перехода */
-export function fadeAmount(S) {
-  if (!S.tr) return 0
-  const k = S.tr.t / FADE
-  return Math.max(0, Math.min(1, k < 1 ? k : 2 - k))
 }
 
 function wake(S) {
@@ -255,8 +179,7 @@ function chooseNext(S) {
 }
 
 function spawn(S, type, x, y, vx = 0) {
-  const life = { heart: 1.5, steam: 1.6, drop: 0.9 }[type] ?? 2.4
-  S.fx.push({ type, x, y, vx, age: 0, life })
+  S.fx.push({ type, x, y, vx, age: 0, life: type === 'heart' ? 1.5 : 2.4 })
 }
 
 function updateCat(S, dt) {
@@ -326,23 +249,7 @@ function updateCat(S, dt) {
 export function update(S, inp, dt) {
   S.t += dt
   const p = S.p
-
-  if (S.tr) {
-    S.tr.t += dt
-    if (!S.tr.switched && S.tr.t >= FADE) {
-      const { to, at } = S.tr.exit
-      S.tr.switched = true
-      S.scene = to
-      p.x = at.x
-      p.y = at.y
-      p.dir = 'down'
-      S.fx = []
-      S.events.push(`place_${to}`)
-    }
-    if (S.tr.t >= FADE * 2) S.tr = null
-  }
-
-  const wantsMove = !S.tr && (inp.x !== 0 || inp.y !== 0)
+  const wantsMove = inp.x !== 0 || inp.y !== 0
 
   if (S.mode === 'walk') {
     if (wantsMove) {
@@ -351,8 +258,8 @@ export function update(S, inp, dt) {
       const dy = inp.y / len
       const nx = p.x + dx * SPEED * dt
       const ny = p.y + dy * SPEED * dt
-      if (!blocked(nx, p.y, S.scene)) p.x = nx
-      if (!blocked(p.x, ny, S.scene)) p.y = ny
+      if (!blocked(nx, p.y)) p.x = nx
+      if (!blocked(p.x, ny)) p.y = ny
       p.moving = true
       p.anim += dt * 8
       p.dir = Math.abs(dx) > Math.abs(dy) ? (dx < 0 ? 'left' : 'right') : dy < 0 ? 'up' : 'down'
@@ -362,7 +269,11 @@ export function update(S, inp, dt) {
     }
   } else if (S.mode === 'sit') {
     p.moving = false
-    if (wantsMove) standUp(S)
+    if (wantsMove) {
+      S.mode = 'walk'
+      p.x = CHAIR_STAND.x
+      p.y = CHAIR_STAND.y
+    }
   } else if (S.mode === 'sleep') {
     S.sleepT += dt
     S.zT -= dt
@@ -383,7 +294,7 @@ export function update(S, inp, dt) {
 
   for (const f of S.fx) {
     f.age += dt
-    f.y += ({ heart: -14, steam: -10, drop: 26 }[f.type] ?? -8) * dt
+    f.y -= (f.type === 'heart' ? 14 : 8) * dt
     f.x += f.vx * dt
   }
   S.fx = S.fx.filter((f) => f.age < f.life)

@@ -55,10 +55,10 @@
 .cm-head { margin: 0 48px var(--s-5) 0; }
 
 .eyebrow-live {
-  background: rgba(31, 157, 98, 0.1);
-  color: #1F9D62;
+  background: var(--lime);
+  color: var(--dark);
 }
-.eyebrow-live::before { background: #1F9D62; }
+.eyebrow-live::before { background: var(--dark); }
 
 .cm-head h2 {
   font-family: var(--font-heading);

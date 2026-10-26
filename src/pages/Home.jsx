@@ -1,18 +1,19 @@
-import { getCaseStudies } from '../data/caseStudies.js'
+import { Link } from 'react-router-dom'
+import { getCaseStudies, HOME_SLUGS } from '../data/caseStudies.js'
 import { getInProgress } from '../data/inProgress.js'
-import { getContacts } from '../data/contacts.js'
+import { getWorkplaces } from '../data/workplaces.js'
 import CaseCard from '../components/CaseCard.jsx'
 import ProjectCard from '../components/ProjectCard.jsx'
-import { useContact } from '../context/ContactContext.jsx'
 import { useLang } from '../i18n/LanguageContext.jsx'
 import './home.css'
 
 export default function Home() {
-  const { openContact } = useContact()
   const { lang, t } = useLang()
-  const contacts = getContacts(lang)
-  const caseStudies = getCaseStudies(lang)
-  const inProgress = getInProgress(lang)
+  const workplaces = getWorkplaces(lang)
+  const caseStudies = HOME_SLUGS
+    .map((slug) => getCaseStudies(lang).find((c) => c.slug === slug))
+    .filter(Boolean)
+  const inProgress = getInProgress(lang).filter((p) => p.onHome)
 
   return (
     <>
@@ -28,6 +29,21 @@ export default function Home() {
 
           <p className="hero-lead">{t('home.heroLead')}</p>
 
+          <div className="work-block">
+            <h2 className="work-block-title">{t('home.workTitle')}</h2>
+            <ul className="work-cols">
+              {workplaces.map((w) => (
+                <li key={w.id} className="work-col">
+                  <p className="work-col-company">
+                    {w.company} <span>{w.tag}</span>
+                  </p>
+                  <p className="work-col-role">{w.role}</p>
+                  <p className="work-col-dates">{w.dates}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
+
           <div className="hero-actions">
             <a href="#work" className="btn btn-primary">{t('home.heroCta')}</a>
           </div>
@@ -42,10 +58,14 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="work-grid">
+        <div className="work-grid work-grid-2">
           {caseStudies.map((c, i) => (
-            <CaseCard key={c.slug} item={c} index={i + 1} total={caseStudies.length} />
+            <CaseCard key={c.slug} item={c} index={i + 1} total={caseStudies.length} compact />
           ))}
+        </div>
+
+        <div className="all-projects">
+          <Link to="/cases" className="btn btn-primary">{t('home.allProjects')}</Link>
         </div>
       </section>
 
@@ -66,21 +86,6 @@ export default function Home() {
           </div>
         </section>
       )}
-
-      {/* ── Призыв к действию ────────────────────────── */}
-      <section className="wrap section-tight">
-        <div className="home-cta">
-          <div>
-            <h2>{t('home.ctaTitle')}</h2>
-            <p>
-              {t('home.ctaText')} {contacts.replyTimeInline}.
-            </p>
-          </div>
-          <button className="btn btn-invert" onClick={openContact}>
-            {t('common.contact')}
-          </button>
-        </div>
-      </section>
     </>
   )
 }

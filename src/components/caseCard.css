@@ -58,6 +58,8 @@
 .badge-blue { background: var(--badge-blue); }
 .badge-green { background: var(--badge-green); }
 .badge-red { background: var(--badge-red); }
+.badge-lime { background: var(--lime); color: var(--dark); }
+
 
 /* Текстовая часть */
 .case-card-body {

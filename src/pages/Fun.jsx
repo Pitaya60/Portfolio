@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import CozyRoom from '../components/CozyRoom.jsx'
 import { FUN_CATEGORIES, TONES, getFunPosts } from '../data/funPosts.js'
 import { useLang } from '../i18n/LanguageContext.jsx'
@@ -35,10 +36,10 @@ function PostCard({ post, soonLabel }) {
   }
 
   return (
-    <article className="fun-card">
+    <Link className="fun-card fun-card-link" to={`/fun/${post.id}`}>
       {media}
       {text}
-    </article>
+    </Link>
   )
 }
 

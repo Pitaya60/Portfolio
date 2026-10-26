@@ -10,31 +10,31 @@
 //   progress    — готовность в процентах (0–100), необязательно
 //   year        — год, необязательно
 //   coverImage  — путь к обложке (/case-images/...), необязательно
+//   onHome      — true: показывать на главной (иначе только на «Все проекты»)
 //   href        — ссылка на проект, необязательно (если нет — карточка не кликабельна)
 //
-// TODO: замените заглушки ниже на реальные проекты.
 // Чтобы скрыть блок целиком, оставьте массивы пустыми.
 
 const ru = [
   {
-    id: 'project-1',
-    title: 'Alma TV',
-    summary: 'Коротко о проекте: для кого он, какую задачу решает и что вы в нём делаете.',
-    tags: ['UX/UI', 'Web'],
+    id: 'nedra-kz',
+    title: 'nedra.kz',
+    summary: 'Продуктовый дизайн в Muveti.',
+    tags: ['Product Design'],
     status: 'В разработке',
-    progress: 40,
     year: '2026',
+    onHome: true,
     coverImage: '',
     href: '',
   },
   {
-    id: 'project-2',
-    title: 'Re:Kassa',
-    summary: 'Коротко о проекте: для кого он, какую задачу решает и что вы в нём делаете.',
-    tags: ['UX/UI', 'Mobile'],
+    id: 'hired-valley',
+    title: 'Hired Valley',
+    summary: 'Стажировка в роли дизайнера-инженера.',
+    tags: ['Design Engineering'],
     status: 'В разработке',
-    progress: 15,
     year: '2026',
+    onHome: true,
     coverImage: '',
     href: '',
   },
@@ -42,24 +42,24 @@ const ru = [
 
 const en = [
   {
-    id: 'project-1',
-    title: 'Alma TV',
-    summary: 'A short note on the project: who it is for, what problem it solves and what you do in it.',
-    tags: ['UX/UI', 'Web'],
+    id: 'nedra-kz',
+    title: 'nedra.kz',
+    summary: 'Product design at Muveti.',
+    tags: ['Product Design'],
     status: 'In progress',
-    progress: 40,
     year: '2026',
+    onHome: true,
     coverImage: '',
     href: '',
   },
   {
-    id: 'project-2',
-    title: 'Re:Kassa',
-    summary: 'A short note on the project: who it is for, what problem it solves and what you do in it.',
-    tags: ['UX/UI', 'Mobile'],
+    id: 'hired-valley',
+    title: 'Hired Valley',
+    summary: 'Internship as a design engineer.',
+    tags: ['Design Engineering'],
     status: 'In progress',
-    progress: 15,
     year: '2026',
+    onHome: true,
     coverImage: '',
     href: '',
   },

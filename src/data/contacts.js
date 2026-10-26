@@ -8,8 +8,8 @@ const contacts = {
     en: 'Camilla Abdulla',
   },
   role: {
-    ru: 'UX/UI Designer',
-    en: 'UX/UI Designer',
+    ru: 'Product Designer',
+    en: 'Product Designer',
   },
   location: {
     ru: 'Алматы, Казахстан',

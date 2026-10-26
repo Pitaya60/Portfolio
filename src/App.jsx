@@ -7,6 +7,8 @@ import { ContactProvider } from './context/ContactContext.jsx'
 import { useLang } from './i18n/LanguageContext.jsx'
 import Home from './pages/Home.jsx'
 import About from './pages/About.jsx'
+import FunPost from './pages/FunPost.jsx'
+import Projects from './pages/Projects.jsx'
 import Fun from './pages/Fun.jsx'
 import CaseStudy from './pages/CaseStudy.jsx'
 import NotFound from './pages/NotFound.jsx'
@@ -41,7 +43,9 @@ export default function App() {
         <ScrollToTop />
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/cases" element={<Projects />} />
           <Route path="/fun" element={<Fun />} />
+          <Route path="/fun/:id" element={<FunPost />} />
           <Route path="/about" element={<About />} />
           <Route path="/case/:slug" element={<CaseStudy />} />
           <Route path="*" element={<NotFound />} />

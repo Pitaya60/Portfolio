@@ -6,8 +6,7 @@
 .hero-inner {
   padding-top: clamp(48px, 7vw, 88px);
   padding-bottom: clamp(48px, 7vw, 80px);
-  max-width: 900px;
-  margin-left: 0;
+  max-width: var(--container);
 }
 
 .hero-title {
@@ -17,6 +16,7 @@
   line-height: 1.12;
   letter-spacing: -0.03em;
   margin: var(--s-5) 0 var(--s-5);
+  max-width: 900px;
   text-wrap: balance;
 }
 
@@ -32,7 +32,54 @@
   display: flex;
   gap: var(--s-3);
   flex-wrap: wrap;
-  margin-bottom: var(--s-8);
+  margin-bottom: 0;
+}
+
+/* Где я работала — между подзаголовком и кнопкой */
+.work-block { margin-bottom: var(--s-6); }
+
+.work-block-title {
+  margin: 0 0 var(--s-4);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.work-cols {
+  list-style: none;
+  margin: 0;
+  padding: var(--s-5) 0 0;
+  border-top: 1px solid var(--line-strong);
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--s-6);
+}
+
+.work-col p { margin: 0; line-height: 1.5; }
+
+.work-col-company { font-weight: 700; font-size: 18px; color: var(--ink); }
+.work-col-company span { font-weight: 500; color: var(--ink-faint); }
+.work-col-role { margin-top: var(--s-2) !important; font-size: 14px; font-weight: 600; color: var(--ink); }
+.work-col-dates { font-size: 14px; color: var(--ink-soft); }
+
+@media (max-width: 860px) {
+  .work-cols { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 480px) {
+  .work-cols { grid-template-columns: 1fr; gap: var(--s-5); }
+}
+
+.all-projects { display: flex; justify-content: center; margin-top: var(--s-7); }
+
+.projects-title {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: clamp(26px, 3.4vw, 38px);
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  margin: 0;
 }
 
 /* Факты — строка с разделителями */
@@ -68,7 +115,11 @@
 }
 
 /* Первый кейс — во всю ширину, как главный */
-.work-grid > :first-child { grid-column: 1 / -1; }
+.work-grid:not(.work-grid-2) > :first-child { grid-column: 1 / -1; }
+
+/* Главная: карточки по 2 в ряд, все одного размера */
+.work-grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media (max-width: 720px) { .work-grid-2 { grid-template-columns: 1fr; } }
 
 /* ── Проекты в разработке ─────────────────────────────────── */
 .in-progress { padding-top: 0; }
@@ -158,7 +209,7 @@
 @media (max-width: 720px) {
   .hero-br { display: none; }
 
-  .hero-actions { gap: var(--s-3); margin-bottom: var(--s-7); }
+  .hero-actions { gap: var(--s-3); margin-bottom: 0; }
   .hero-actions .btn { flex: 1 1 auto; min-width: 150px; }
 
   .hero-facts { grid-template-columns: 1fr; gap: var(--s-4); }

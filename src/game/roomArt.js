@@ -5,7 +5,7 @@ export const W = 320
 export const H = 180
 export const WALL_H = 64
 
-export const mk = (w, h, fn) => {
+const mk = (w, h, fn) => {
   const c = document.createElement('canvas')
   c.width = w
   c.height = h
@@ -15,20 +15,20 @@ export const mk = (w, h, fn) => {
   return c
 }
 
-export const r = (g, c, x, y, w, h) => {
+const r = (g, c, x, y, w, h) => {
   g.fillStyle = c
   g.fillRect(x, y, w, h)
 }
 
 /* Мягкая тень под мебелью */
-export const shadow = (g, x, y, w) => {
+const shadow = (g, x, y, w) => {
   g.fillStyle = 'rgba(122,52,64,0.22)'
   g.fillRect(x, y, w, 2)
   g.fillRect(x + 2, y + 2, w - 4, 1)
 }
 
 /* Эллипс построчно — для листвы */
-export const blob = (g, c, cx, cy, rx, ry) => {
+const blob = (g, c, cx, cy, rx, ry) => {
   g.fillStyle = c
   for (let y = -ry; y <= ry; y++) {
     const w = Math.round(rx * Math.sqrt(1 - (y * y) / (ry * ry + 0.0001)))
