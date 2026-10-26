@@ -55,7 +55,7 @@ export default function CustomCaseStudy({ item }) {
         <ImageSlot
           src={coverImages[0]}
           label={`${t('caseStudy.coverOf')} — ${item.company}`}
-          size="1400×900"
+          size="1600×900"
           className="cs-cover-image"
         />
       </section>
@@ -88,7 +88,7 @@ export default function CustomCaseStudy({ item }) {
 
 /* ── Обёртка блока: номер + заголовок + содержимое ─────────── */
 function Block({ block, number, company, t }) {
-  const wide = ['screens', 'table', 'cjm', 'compare'].includes(block.type)
+  const wide = ['screens', 'table', 'cjm', 'compare', 'matrix'].includes(block.type)
 
   return (
     <section className={`wrap cs-block ${wide ? 'cs-block-wide' : ''}`}>
@@ -311,6 +311,43 @@ function BlockBody({ block, company, t }) {
       </div>
     </>
   )
+
+    case 'matrix':
+      return (
+        <>
+          <ScrollBox hint={t('caseStudy.scrollHint')}>
+            <table className="cs-table cs-matrix">
+              <thead>
+                <tr>
+                  {block.columns.map((c, i) => <th key={i}>{c}</th>)}
+                </tr>
+              </thead>
+              <tbody>
+                {block.rows.map((row, i) => (
+                  <tr key={i}>
+                    {row.map((cell, j) => (
+                      <td
+                        key={j}
+                        className={[
+                          block.numericCols?.includes(j) ? 'cs-matrix-num' : '',
+                          j === 0 ? 'cs-matrix-first' : '',
+                        ].join(' ')}
+                      >
+                        {cell}
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </ScrollBox>
+          {block.footer && (
+            <div className="cs-checklist cs-matrix-footer">
+              <ul>{block.footer.map((f, i) => <li key={i}>{f}</li>)}</ul>
+            </div>
+          )}
+        </>
+      )
 
     case 'note':
       return <p className="cs-note">{block.text}</p>

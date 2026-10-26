@@ -2,6 +2,8 @@
    Тексты-заглушки замените на реальные: поля facts, heroSubtitle и customSections.
    Когда кейс будет готов, при желании перенесите его в caseStudies.ru.js / .en.js. */
 
+import { almaTv, reKassa } from './caseStudies.star.ru.js'
+
 const L = {
   ru: {
     status: 'В разработке',
@@ -116,6 +118,7 @@ const projects = [
 ]
 
 export default {
-  ru: projects.map((p) => template('ru', p)),
+  // RU — подробные кейсы по STAR (caseStudies.star.ru.js); EN пока шаблон
+  ru: [almaTv, reKassa],
   en: projects.map((p) => template('en', p)),
 }

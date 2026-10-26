@@ -474,6 +474,11 @@
 
 .cs-table tbody tr:hover td, .cs-cjm-table tbody tr:hover td { background: var(--paper); }
 
+.cs-matrix td { min-width: 150px; }
+.cs-matrix td.cs-matrix-first { color: var(--ink); font-weight: 600; min-width: 190px; }
+.cs-matrix td.cs-matrix-num { min-width: 0; text-align: center; font-family: var(--font-mono); white-space: nowrap; }
+.cs-matrix-footer { margin-top: var(--s-4); }
+
 .cs-table-num {
   width: 48px;
   text-align: center;

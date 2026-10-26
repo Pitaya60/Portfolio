@@ -19,6 +19,8 @@
 /* Обложка */
 .case-card-media { position: relative; background: var(--paper-sunken); }
 
+/* Обложка карточки — всегда 16:9. Рекомендуемый размер файла: 1600×900 px
+   (лишнее обрезается по центру). */
 .case-card-cover {
   width: 100%;
   aspect-ratio: 16 / 9;
