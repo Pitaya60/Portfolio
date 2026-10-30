@@ -67,6 +67,11 @@ const en = [
 
 const byLang = { ru, en }
 
+/* Блок «Проекты в разработке» временно скрыт.
+   Чтобы вернуть — поставьте true. */
+const SHOW_IN_PROGRESS = false
+
 export function getInProgress(lang = 'ru') {
+  if (!SHOW_IN_PROGRESS) return []
   return byLang[lang] || ru
 }

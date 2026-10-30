@@ -17,8 +17,14 @@ const ORDER = [
   'qmed-ai',
 ]
 
+/* Кейсы, скрытые с сайта (на время переработки).
+   Чтобы вернуть кейс — удалите его slug из этого списка. */
+const HIDDEN_SLUGS = ['alma-tv', 're-kassa', 'qmed-ai']
+
 export function getCaseStudies(lang = 'ru') {
-  const all = [...(byLang[lang] || ru), ...(soon[lang] || soon.ru)]
+  const all = [...(byLang[lang] || ru), ...(soon[lang] || soon.ru)].filter(
+    (c) => !HIDDEN_SLUGS.includes(c.slug),
+  )
   const rank = (slug) => {
     const i = ORDER.indexOf(slug)
     return i === -1 ? ORDER.length : i
